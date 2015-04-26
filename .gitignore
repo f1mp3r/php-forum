@@ -14,6 +14,10 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 
+# Sublime text project files
+*.sublime-project
+*.sublime-workspace
+
 # Windows shortcuts
 *.lnk
 
