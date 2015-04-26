@@ -1,0 +1,942 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"mysql_fetch",
+				"mysql_fetch_assoc"
+			],
+			[
+				"border-top-",
+				"border-top-left-radius"
+			],
+			[
+				"url",
+				"urlencode"
+			],
+			[
+				"list",
+				"list-group-item"
+			],
+			[
+				"carou",
+				"carousel"
+			],
+			[
+				"item",
+				"itemlength"
+			],
+			[
+				"carous",
+				"carousel-inner"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"rbg",
+				"rgba()"
+			],
+			[
+				"authorName",
+				"authorName_en"
+			],
+			[
+				"margin",
+				"margin"
+			],
+			[
+				"list-st",
+				"list-style-type"
+			],
+			[
+				"for",
+				"foreach	foreach …"
+			],
+			[
+				"cate",
+				"categoryInfo"
+			],
+			[
+				"caegory",
+				"categoryId"
+			],
+			[
+				"query",
+				"queryAddOn"
+			],
+			[
+				"bbr",
+				"border-bottom-left-radius"
+			],
+			[
+				"border-bottom-",
+				"border-bottom-right-radius"
+			],
+			[
+				"home",
+				"homepageData"
+			],
+			[
+				"rgb",
+				"rgba()"
+			],
+			[
+				"getSubcategori",
+				"getSubcategoriesByCategoryId"
+			],
+			[
+				"sideB",
+				"sidebarData"
+			],
+			[
+				"drop",
+				"dropdown"
+			],
+			[
+				"dropo",
+				"dropdown-menu"
+			],
+			[
+				"main",
+				"maincont"
+			],
+			[
+				"append",
+				"appendTo	.appendTo()"
+			],
+			[
+				"getElement",
+				"getElementById  (function)"
+			],
+			[
+				"getElementBy",
+				"getElementsByTagName  (function)"
+			],
+			[
+				"preg_math",
+				"preg_match_all"
+			],
+			[
+				"f",
+				"fixed"
+			],
+			[
+				"program",
+				"Programmer"
+			],
+			[
+				"comp",
+				"comp_fr  (variable)"
+			],
+			[
+				"fr",
+				"frequency  (variable)"
+			],
+			[
+				"curr",
+				"currYear"
+			],
+			[
+				"cur",
+				"currYear"
+			],
+			[
+				"marg",
+				"margin"
+			],
+			[
+				"se",
+				"secondDigit"
+			],
+			[
+				"first",
+				"firstNumber"
+			],
+			[
+				"ma",
+				"margin-bottom"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"te",
+				"text-align"
+			],
+			[
+				"data-sli",
+				"data-slide-to"
+			],
+			[
+				"_",
+				"_SERVER  (variable)"
+			],
+			[
+				"margi",
+				"margin-top"
+			],
+			[
+				"Cd",
+				"[CDATA[  (cdata)"
+			],
+			[
+				"no",
+				"noValidId"
+			],
+			[
+				"mysql_num",
+				"mysql_num_rows"
+			],
+			[
+				"mysql_fetc",
+				"mysql_fetch_assoc"
+			],
+			[
+				"mysql_nu",
+				"mysql_num_rows"
+			],
+			[
+				"mysq_fetc",
+				"mysql_fetch_assoc"
+			],
+			[
+				"rel",
+				"rel=  (attribute)"
+			],
+			[
+				"json",
+				"json_encode"
+			],
+			[
+				"arra",
+				"array"
+			],
+			[
+				"arr",
+				"array"
+			],
+			[
+				"REQUE",
+				"REQUEST_URI  (variable)"
+			],
+			[
+				"cl",
+				"class=  (attribute)"
+			],
+			[
+				"fput",
+				"fputs  (function)"
+			],
+			[
+				"margin-",
+				"margin-bottom:   (property)"
+			],
+			[
+				"scroll",
+				"scrollSpy"
+			],
+			[
+				"fu",
+				"function"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "index.php",
+			"settings":
+			{
+				"buffer_size": 152,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "system/autoload.php",
+			"settings":
+			{
+				"buffer_size": 96,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "lib/database.php",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "lib/auth.php",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "system/packages.php",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 213.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"code forma",
+				"CodeFormatter: Format as PHP Syntax"
+			],
+			[
+				"format",
+				"CodeFormatter: Format Code"
+			],
+			[
+				"format c",
+				"CodeFormatter: Format Code"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"e",
+				"Snippet: ENV['…']"
+			],
+			[
+				"syntax php",
+				"Set Syntax: PHP"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"php",
+				"PHP Class browser: Open Browser"
+			],
+			[
+				"consol",
+				"Set Syntax: R Console"
+			],
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"package ",
+				"Package Control: Install Package"
+			],
+			[
+				"package",
+				"Package Control: Install Package"
+			],
+			[
+				"control package",
+				"Package Control: List Packages"
+			],
+			[
+				"Snippet: ",
+				"Snippet: #!/usr/bin/env"
+			],
+			[
+				"packagecontrol",
+				"Package Control: Add Channel"
+			],
+			[
+				"pal",
+				"Project: Add Folder"
+			]
+		],
+		"width": 549.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"view.encoding()",
+			"sublime.message_dialog(view.encoding())",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"python -u \"D:\\Kriss\\projects\\python\\test\\wxtest.py\"",
+			"exec",
+			"exec true ",
+			"exec 1 0",
+			"exec",
+			"build",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"fopen(asdf)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/xampp/htdocs/softuni/webdev",
+		"/C/xampp/htdocs/softuni/webdev/config",
+		"/C/xampp/htdocs/softuni/webdev/controller",
+		"/C/xampp/htdocs/softuni/webdev/lib",
+		"/C/xampp/htdocs/softuni/webdev/model",
+		"/C/xampp/htdocs/softuni/webdev/system",
+		"/C/xampp/htdocs/softuni/webdev/view"
+	],
+	"file_history":
+	[
+		"/C/xampp/htdocs/softuni/webdev/webdev.sublime-project",
+		"/C/xampp/htdocs/softuni/webdev/config/config.php",
+		"/C/xampp/htdocs/softuni/webdev/config/db.php",
+		"/C/xampp/htdocs/categories.php",
+		"/C/Users/Christopher/Desktop/tablica-1.html",
+		"/D/Program Files (x86)/Dishonored/Binaries/build.properties",
+		"/C/xampp/htdocs/book_store/application/config/routes.php",
+		"/C/xampp/htdocs/book_store/application/views/login.php",
+		"/C/xampp/htdocs/book_store/application/controllers/UserController.php",
+		"/C/xampp/htdocs/book_store/application/controllers/Cart.php",
+		"/C/xampp/htdocs/book_store/application/views/authorview.php",
+		"/C/xampp/htdocs/book_store/application/views/cartPreview.php",
+		"/C/xampp/htdocs/book_store/application/views/includes/header.php",
+		"/C/xampp/htdocs/LodkiVarna/oil",
+		"/C/Users/Christopher/AppData/Local/Temp/fz3temp-1/layout.tpl",
+		"/C/Users/Christopher/AppData/Local/Temp/fz3temp-1/page.tpl",
+		"/C/Users/Christopher/AppData/Local/Temp/fz3temp-1/home.tpl",
+		"/C/Users/Christopher/AppData/Local/Temp/fz3temp-1/config.php",
+		"/C/Users/Christopher/AppData/Local/Temp/fz3temp-1/constants.php",
+		"/C/Users/Christopher/AppData/Local/Temp/fz3temp-1/.htaccess",
+		"/D/Other/Documents/SampleDBAppsExam/6.Mountains-Code-First/App.config",
+		"/C/xampp/htdocs/sqlserv.php",
+		"/C/xampp/htdocs/password_manager/index.php",
+		"/C/xampp/htdocs/password_manager/css/main.css",
+		"/C/xampp/htdocs/videoportal/cfg/config.php",
+		"/D/OneDrive/htdocs/tvshows/config/configuration.php",
+		"/C/xampp/htdocs/f1mp3r.eu/index.php",
+		"/C/xampp/htdocs/f1mp3r.eu/js/classie.js",
+		"/C/xampp/htdocs/book_store/css/style.css",
+		"/C/xampp/htdocs/book_store/js/script.js",
+		"/C/xampp/htdocs/book_store/application/views/index.php",
+		"/C/xampp/htdocs/book_store/application/controllers/PageController.php",
+		"/C/xampp/htdocs/book_store/application/controllers/ErrorController.php",
+		"/C/xampp/htdocs/book_store/js/cart.js",
+		"/C/xampp/htdocs/book_store/application/models/BookModel.php",
+		"/C/xampp/htdocs/book_store/application/models/AuthorModel.php",
+		"/C/xampp/htdocs/book_store/application/libraries/MY_Cart.php",
+		"/C/xampp/htdocs/book_store/application/config/autoload.php",
+		"/C/xampp/htdocs/book_store/application/controllers/CategoryController.php",
+		"/C/xampp/htdocs/book_store/application/views/bookview.php",
+		"/C/Users/Christopher/AppData/Roaming/Sublime Text 3/Packages/CodeFormatter/CodeFormatter.sublime-settings",
+		"/C/Users/Christopher/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
+		"/C/Users/Christopher/AppData/Roaming/Sublime Text 3/Packages/User/CodeFormatter.sublime-settings",
+		"/C/xampp/htdocs/book_store/application/views/pageview.php",
+		"/C/xampp/htdocs/book_store/application/views/errorview.php",
+		"/C/xampp/htdocs/book_store/application/views/categoryview.php",
+		"/C/xampp/htdocs/book_store/application/views/booksview.php",
+		"/C/xampp/htdocs/book_store/application/views/authorsview.php",
+		"/C/xampp/htdocs/book_store/application/controllers/functions.php",
+		"/C/xampp/htdocs/book_store/application/controllers/MainController.php",
+		"/C/xampp/htdocs/book_store/application/controllers/AuthorController.php",
+		"/C/xampp/htdocs/book_store/application/controllers/BookController.php",
+		"/C/xampp/htdocs/book_store/application/views/includes/sidebar.php",
+		"/C/xampp/htdocs/blog/bootstrap/paths.php",
+		"/C/xampp/htdocs/blog/server.php",
+		"/C/xampp/htdocs/book_store/application/controllers/errors.php",
+		"/C/xampp/htdocs/book_store/index.php",
+		"/C/xampp/htdocs/book_store/application/config/config.php",
+		"/C/Users/Christopher/Desktop/asddf.php",
+		"/C/Users/Christopher/AppData/Roaming/Sublime Text 3/Packages/User/php.sublime-build",
+		"/C/xampp/htdocs/book_store/system/libraries/Cart.php",
+		"/C/xampp/htdocs/book_store/ftpsync.settings",
+		"/C/xampp/htdocs/classes/DirectoryFilesGetter.class.php",
+		"/C/xampp/htdocs/index.php",
+		"/C/Users/Christopher/AppData/Roaming/Sublime Text 3/Packages/User/FTPSync.sublime-settings",
+		"/D/Python_projects/test/pytest.py",
+		"/C/Users/kriss/Desktop/Programs.txt",
+		"/D/Program Files (x86)/Borderlands 2/Binaries/Win32/codex.ini",
+		"/C/xampp/htdocs/book_store/application/models/CategoryModel.php",
+		"/C/xampp/htdocs/book_store/application/views/includes/footer.php",
+		"/C/xampp/htdocs/book_store/application/controllers/Homepage.php",
+		"/C/xampp/htdocs/book_store/system/core/URI.php",
+		"/C/Users/kriss/Desktop/flexi-auth-master/flexi-auth-master/demo_files/application/views/demo/public_examples/register_view.php",
+		"/C/Users/kriss/Desktop/flexi-auth-master/flexi-auth-master/demo_files/application/views/index_view.php",
+		"/C/Users/kriss/Desktop/flexi-auth-master/flexi-auth-master/demo_files/application/views/includes/scripts.php",
+		"/C/Users/kriss/Desktop/flexi-auth-master/flexi-auth-master/demo_files/application/views/includes/email/registration_welcome.tpl.php",
+		"/C/xampp/htdocs/book_store/.htaccess",
+		"/C/xampp/htdocs/book_store/application/config/flexi_auth.php",
+		"/D/Program Files (x86)/Steam/SteamApps/common/Unturned/Unturned_Data/Managed/Assembly-CSharp.dll",
+		"/C/xampp/htdocs/book_store/application/models/PageModel.php",
+		"/C/xampp/htdocs/book_store/application/helpers/errors.php",
+		"/C/xampp/htdocs/book_store/application/views/header.php",
+		"/C/Users/kriss/Desktop/upr2_2.html",
+		"/C/xampp/htdocs/book_store/application/models/SettingsModel.php",
+		"/C/xampp/htdocs/book_store/application/models/PagesModel.php",
+		"/C/xampp/htdocs/book_store/database_structure.txt",
+		"/C/xampp/htdocs/book_store/application/views/footer.php",
+		"/C/xampp/htdocs/book_store/application/views/homepage.php",
+		"/C/xampp/htdocs/book_store/js/zoomomatic.js",
+		"/C/xampp/htdocs/book_store/application/views/sidebar.php",
+		"/C/xampp/htdocs/book_store/css/bootstrap.min.css",
+		"/C/xampp/htdocs/book_store/css/bootstrap-theme.css",
+		"/C/xampp/htdocs/book_store/styles/style.css",
+		"/C/xampp/htdocs/book_store/index.html",
+		"/C/xampp/htdocs/book_store/index2.php",
+		"/C/xampp/htdocs/book_store/application/views/error.php",
+		"/C/xampp/htdocs/book_store/application/controllers/error.php",
+		"/C/xampp/htdocs/book_store/application/config/database.php",
+		"/C/Users/kriss/Desktop/CodeIgniter-2.2-stable/.travis.yml",
+		"/C/Users/kriss/Desktop/CodeIgniter-2.2-stable/.gitignore",
+		"/C/Users/kriss/Desktop/CodeIgniter-2.2-stable/index.php",
+		"/C/Users/kriss/Desktop/CodeIgniter-2.2-stable/license.txt",
+		"/C/xampp/htdocs/online_shopcart/catalog/view/theme/default/template/common/header.tpl",
+		"/C/xampp/htdocs/online_shopcart/catalog/view/theme/default/template/common/home.tpl",
+		"/C/xampp/htdocs/online_shopcart/admin/language/bulgarian/common/footer.php",
+		"/C/xampp/htdocs/online_shopcart/catalog/language/bulgarian/common/footer.php",
+		"/C/xampp/htdocs/online_shopcart/catalog/view/theme/default/stylesheet/stylesheet.css",
+		"/C/Users/kriss/Desktop/download",
+		"/C/xampp/htdocs/online_shopcart/admin/controller/module/filter.php",
+		"/C/xampp/htdocs/online_shopcart/shopcart.sublime-project",
+		"/C/xampp/htdocs/online_shopcart/admin/controller/module/watermark.php",
+		"/C/xampp/htdocs/online_shopcart/catalog/controller/common/column_left.php",
+		"/C/xampp/htdocs/online_shopcart/catalog/controller/common/header.php",
+		"/C/xampp/htdocs/online_shopcart/admin/view/template/common/footer.tpl",
+		"/C/xampp/htdocs/online_shopcart/admin/controller/setting/setting.php",
+		"/C/xampp/htdocs/online_shopcart/catalog/language/english/account/voucher.php",
+		"/C/xampp/htdocs/online_shopcart/catalog/language/english/account/return.php",
+		"/C/xampp/htdocs/online_shopcart/catalog/language/english/account/register.php",
+		"/C/xampp/htdocs/online_shopcart/catalog/language/english/account/forgotten.php",
+		"/C/xampp/htdocs/online_shopcart/catalog/language/english/account/logout.php",
+		"/C/xampp/htdocs/online_shopcart/catalog/language/english/account/login.php",
+		"/C/xampp/htdocs/online_shopcart/catalog/language/english/account/newsletter.php",
+		"/C/xampp/htdocs/online_shopcart/catalog/language/english/account/order.php",
+		"/C/xampp/htdocs/online_shopcart/catalog/language/english/account/password.php",
+		"/C/xampp/htdocs/online_shopcart/catalog/language/english/account/recurring.php",
+		"/C/xampp/htdocs/online_shopcart/catalog/language/bulgarian/account/newsletter.php",
+		"/C/xampp/htdocs/online_shopcart/catalog/language/bulgarian/account/voucher.php",
+		"/C/xampp/htdocs/online_shopcart/catalog/language/bulgarian/account/history.php"
+	],
+	"find":
+	{
+		"height": 28.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"{\n            get { throw new System.NotImplementedException(); }\n            set { throw new System.NotImplementedException(); }\n        }",
+			"myCarousel",
+			"categoryData",
+			"mime_type",
+			"product_name_rules",
+			"$config['permitted_uri_chars']",
+			"a",
+			"pageData",
+			"pageInfo",
+			"pageSlug",
+			"bookData",
+			"bookInfo",
+			"    ",
+			"@media (min-width:768px){.navbar",
+			".navbar",
+			"    ",
+			".templatemo_",
+			"templatemo",
+			"#templatemo_",
+			"id=\"templatemo_",
+			"templatemo_",
+			"$this->data",
+			"    ",
+			"	\n",
+			"./index_files",
+			"    ",
+			"btn-success",
+			" btn-success",
+			"18bc9c",
+			" /*18bc9c*/;",
+			"18bc9c",
+			"18BC9C",
+			"2c3e50",
+			"spaskich",
+			"h1",
+			"    ",
+			"echo gettype($var) . '<br />';",
+			"<?",
+			"$(this)",
+			"  ",
+			"carousel-example-generic",
+			"  ",
+			"    ",
+			"        ",
+			"minimap",
+			"    ",
+			"files",
+			"file",
+			"spodeli",
+			"<div class=\"image\">",
+			"<img src=\"http://placehold.it/200x200\">",
+			"				",
+			"  ",
+			"    ",
+			"\n						<a class=\"star ui corner label\">\n							<i class=\"star icon\"></i>\n						</a>",
+			"/images/demo/highres(.+?).jpg",
+			"  ",
+			"\"id\": ([0-9]+)",
+			"\n	{\n		\"id\":",
+			"    ",
+			"{{ \\\"[object Object]\\\" tag is not supported }}",
+			"1",
+			"that",
+			"asdasjdoasd"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"{ get; set; }",
+			"carousel",
+			"authorsData",
+			"b",
+			"categoryData",
+			"categoryInfo",
+			"categorySlug",
+			"pageData",
+			"pageInfo",
+			"	",
+			".",
+			"#",
+			"id=\"",
+			"",
+			"$data",
+			"	",
+			"images",
+			"	",
+			"1488e0",
+			"; /*18bc9c*/",
+			"1488e0 /*18bc9c*/",
+			"	",
+			"echo ( is_numeric($var) ? var_dump($var) : gettype($var) ) . '<br />';",
+			"img",
+			"	",
+			"slider",
+			"	",
+			"		",
+			"	",
+			"<a class=\"image\" href=\"painting/1\">",
+			"<a href=\"painting/1\"><img src=\"http://placehold.it/200x200\"></a>",
+			"",
+			"	",
+			"",
+			"http://placehold.it/200x200",
+			"	",
+			"\"id\": [$1+1]",
+			"\"id\": {$1+1}",
+			"\"id\": ([0-9]+1)",
+			"\"id\": $1+1",
+			"\n	{\n		\"product\": \"\",\n		\"id\":",
+			"	",
+			"911",
+			"9",
+			"6",
+			"5",
+			"2",
+			"4",
+			"8",
+			"7",
+			"6",
+			"5",
+			"4",
+			"3",
+			"2",
+			"1",
+			"True",
+			"return",
+			"print(\"asfg\");\ndef test(i):\n	return True"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "index.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 152,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								150,
+								150
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "system/autoload.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 96,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								92,
+								92
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "lib/database.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "lib/auth.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "system/packages.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 195.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.sftp":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "webdev.sublime-project",
+	"replace":
+	{
+		"height": 174.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 625.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"C:\\xampp\\htdocs\\online_shopcart\\shopcart.sublime-project"
+			]
+		],
+		"width": 475.0
+	},
+	"select_symbol":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 392.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 336.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
