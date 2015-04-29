@@ -2,7 +2,8 @@
 	define('DB_HOST', 'localhost');
 	define('DB_USER', 'root');
 	define('DB_PASS', '');
-	define('DB_NAME', 'lodkidb');
+	define('DB_NAME', 'phpforum');
+	define('DB_DEFAULT_CHARSET', 'utf8');
 
 	define('DEFAULT_LAYOUT', 'front');
 	define('ADMIN_LAYOUT', 'admin');

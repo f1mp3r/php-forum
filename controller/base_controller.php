@@ -36,12 +36,17 @@ abstract class Base_Controller {
 		$this->renderView();
 	}
 
-	public function renderView($viewName = null, $isPartial = false) {
+	public function renderView($viewName = null, $data = [], $isPartial = false) {
 		if (!$this->viewRendered) {
 			if ($viewName == null) {
 				$viewName = $this->action;
 			}
+			
 			extract($this->viewBag);
+			if (count($data)) {
+				extract($data);
+			}
+
 			if (!$isPartial) {
 				include_once(ROOT_DIR . 'view/layouts/' . $this->layout . '/header.php');
 			}
@@ -68,5 +73,18 @@ abstract class Base_Controller {
 		}
 		header("Location: $url");
 		die;
+	}
+
+	public function load_models($models = []) {
+		if (!empty($models)) {
+			if (is_array($models)) {
+				foreach ($models as $modelName) {
+					include_once(ROOT_DIR . 'model/' . $modelName . '.php');
+
+					$model_class_name = '\Models\\' . ucfirst($modelName) . '_Model';
+					$this->$modelName = new $model_class_name();
+				}
+			}
+		}
 	}
 }

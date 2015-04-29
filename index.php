@@ -7,6 +7,17 @@
 	define('ROOT_DIR', dirname(__FILE__) . DS);
 	define('ROOT_PATH', basename(dirname(__FILE__)) . DS);
 
+	// include stuff from autoload
+	foreach ($packages as $name => $location) {
+		try {
+			include_once($location);
+		}
+		catch (Exception $e) {
+			throw new Exception('Could not load ' . $name . ':<br />' . $e);
+		}
+	}
+
+	//FC pattern
 	$request_home = DS . ROOT_PATH;
 	$request = $_SERVER['REQUEST_URI'];
 	$components = array();
@@ -14,6 +25,10 @@
 	$method = 'index';
 	$admin_routing = false;
 	$param = array();
+
+	$db_object = \Lib\Database::get_instance();
+	$db_conn = $db_object::get_db();
+	include_once('model/master.php');
 
 	if (!empty($request)) {
 		if (strpos($request, $request_home) !== false) {
