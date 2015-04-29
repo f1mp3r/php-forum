@@ -1,22 +1,19 @@
 <?php
 	include_once('config/config.php');
 	include_once('system/autoload.php');
-	include_once('lib/view.php');
-	include_once('controller/master_controller.php');
-
+	include_once('controller/base_controller.php');
+	include_once('controller/home.php');
 	define('DS', '/');
-	define('ROOT_DIR', dirname( __FILE__ ) . DS);
-	define('ROOT_PATH', basename( dirname( __FILE__ ) ) . DS);
+	define('ROOT_DIR', dirname(__FILE__) . DS);
+	define('ROOT_PATH', basename(dirname(__FILE__)) . DS);
 
 	$request_home = DS . ROOT_PATH;
 	$request = $_SERVER['REQUEST_URI'];
 	$components = array();
-	$controller = 'Master';
+	$controller = 'Home';
 	$method = 'index';
 	$admin_routing = false;
 	$param = array();
-
-	$master_controller = new \Controllers\Master_Controller();
 
 	if (!empty($request)) {
 		if (strpos($request, $request_home) !== false) {
@@ -45,7 +42,7 @@
 		
 		// Form the controller class
 		$controller_class = $admin_namespace . '\Controllers\\' . ucfirst( $controller ) . '_Controller';
-		$instance = new $controller_class();
+		$instance = new $controller_class($controller_class, $method);
 		
 		// Call the object and the method
 		if( method_exists( $instance, $method ) ) {
@@ -54,5 +51,7 @@
 			call_user_func_array(array($instance,'index'),array());
 		}
 	} else {
-		$master_controller->home();
+		$controller_class = '\Controllers\\' . HOME_CONTROLLER;
+		$instance = new $controller_class($controller_class, DEFAULT_METHOD);
+		call_user_func_array(array($instance, DEFAULT_METHOD), []);
 	}
