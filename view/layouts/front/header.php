@@ -48,6 +48,9 @@
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="user/profile">Profile</a></li>
 							<li><a href="questions/new">Create question</a></li>
+							<?php if ($user->get_logged_user(true)['is_admin']): ?>
+							<li class="inverted"><a href="admin/">Administration</a></li>
+							<?php endif; ?>
 							<li class="divider"></li>
 							<li><a href="user/logout">Logout</a></li>
 						</ul>

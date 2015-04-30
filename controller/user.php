@@ -5,7 +5,7 @@ namespace Controllers;
 class User_Controller extends Base_Controller
 {
 	public function __construct() {
-		$this->load_models(['users']);
+		$this->load_models(['users', 'questions']);
 	}
 	public function signin() {
 		$data = [];
@@ -73,5 +73,25 @@ class User_Controller extends Base_Controller
 		} else {
 			$this->redirect('user', 'profile');
 		}
+	}
+
+	public function profile($username = null) {
+		if ($username == null && !$this->user()->is_logged_in()) {
+			$this->renderView('front/error', ['message' => '404 page not found.']);
+			return;
+		}
+		$data = [];
+
+		$user = $username ? $this->users->get($username, 'username') : $this->user()->get_logged_user(true);
+		$questions = $this->questions->find([
+			'where' => ['user_id', $user['id']],
+			'orderby' => ['date_created' => 'DESC', 'id' => 'DESC'],
+			'limit' => 10
+		]);
+
+		$data['questions'] = $questions;
+		$data['profile'] = $user;
+		$data['title'] = $user['username'] . '\'s profile';
+		$this->renderView('front/profile', $data);
 	}
 }

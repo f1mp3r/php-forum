@@ -17,7 +17,7 @@
 		</div>
 		<div class="col-md-9">
 			<div class="text">
-				<?php echo nl2br(stripslashes($question['text'])); ?>
+				<?php echo nl2br(htmlspecialchars(stripslashes($question['text']))); ?>
 			</div>
 		</div>
 	</div>
@@ -26,7 +26,7 @@
 	<?php if (isset($tags)): ?>
 		<?php if (count($tags)): ?>
 			<?php foreach ($tags as $tag): ?>
-				<a href="search/bytag/<?php echo $tag['slug']; ?>" class="label label-primary"><?php echo $tag['name']; ?></a>
+				<a href="questions/bytag/<?php echo $tag['slug']; ?>" class="label label-primary"><?php echo $tag['tag']; ?></a>
 			<?php endforeach; ?>
 		<?php else: ?>
 			no tags added
@@ -36,14 +36,14 @@
 <hr />
 <?php if (count($answers)): ?>
 <div class="list-group">
-	<?php foreach ($answers as $answer): ?>
+	<?php foreach ($answers as $answer): $answer['author'] = $this->users->get($answer['user_id']); ?>
 		<div class="answer">
 			Author:
-			<?php echo ($answer['user_id'] == 0) ? 'Anonymous' : '<a href="user/view/' . $answer['user_id'] . '">' . $this->user->get($answer['user_id'])['username'] . '</a>'; ?>
+			<?php echo ($answer['user_id'] == 0) ? $answer['author_name'] : '<a href="user/profile/' . $answer['author']['username'] . '">' . $answer['author']['username'] . '</a>'; ?>
 			| <span title="<?php echo date('d.m.Y H:i', strtotime($answer['date_created'])); ?>">Added <?php echo time_ago(strtotime($answer['date_created'])); ?> ago
 					</span><br />
 			<div class="text">
-				<?php echo nl2br(stripslashes($answer['text'])); ?>
+				<?php echo nl2br(htmlspecialchars(stripslashes($answer['text']))); ?>
 			</div>
 		</div>
 	<?php endforeach; ?>

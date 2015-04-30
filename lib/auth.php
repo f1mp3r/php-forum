@@ -53,20 +53,25 @@ class Auth
 		session_destroy();
 	} 
 	
-	public function get_logged_user() {
+	public function get_logged_user($get_full_data = false) {
 		if (!isset($_SESSION['username'])) {
 			return [];
 		}
 
-		// $db = \Lib\Database::get_instance();
-		// $dbconn = $db->get_db();
-		
-		
-		// $statement = $dbconn->prepare("SELECT * FROM users WHERE id = ?");
-		// $statement->bind_param('i', (int) $_SESSION['user_id']);
-		
-		// $statement->execute();
-		
+		if ($get_full_data) {
+			$db = \Lib\Database::get_instance();
+			$dbconn = $db->get_db();
+			
+			$query = "SELECT * FROM users WHERE id = " . (int) $_SESSION['user_id'];
+
+			$result = $dbconn->query($query);
+
+			if ($result->num_rows == 1 && !empty($result)) {
+				return $result->fetch_assoc();
+			}
+			return [];
+		}
+
 		return array( 
 			'username' => $_SESSION['username'], 
 			'user_id' => $_SESSION['user_id'] 
