@@ -14,7 +14,7 @@
 <?php endif; ?>
 <?php if (count($questions)): ?>
 <hr />
-<h3>10 newest questions</h3>
+<h2>10 newest questions <a href="questions/create" class="btn btn-success pull-right">New question</a></h2>
 <div class="list-group">
 	<?php foreach ($questions as $question): ?>
 	<a href="questions/view/<?php echo $question['id']; ?>/<?php echo $question['slug']; ?>" class="list-group-item">

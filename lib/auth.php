@@ -6,7 +6,8 @@ class Auth
 	private static $session = null;
 	
 	private function __construct() {
-		session_set_cookie_params(1800, "/");
+		$time = 60 * 60;
+		session_set_cookie_params($time, "/");
 		session_start();
 	}
 	

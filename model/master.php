@@ -149,7 +149,7 @@ class Master_Model
 
 		foreach ($data as $key => $value) {
 			$keys[] = '`' . $key . '`';
-			$vals[] = "'" . $this->_db->real_escape_string($value) . "'";
+			$vals[] = "'" . clean($value) . "'";
 		}
 
 		$colums = implode(', ', $keys);
@@ -211,5 +211,17 @@ class Master_Model
 		}
 
 		return $results;
+	}
+
+	public function autocommit($do = TRUE) {
+		$this->_db->autocommit($do);
+	}
+
+	public function commit() {
+		$this->_db->commit();
+	}
+
+	public function geterror() {
+		return $this->_db->error;
 	}
 }

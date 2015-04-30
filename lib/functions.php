@@ -22,6 +22,14 @@ function time_ago($time)
 
 function is_valid($var, $format = null, $min_len = 0, $max_len = PHP_INT_MAX, $var_name = 'The value') {
 	$errors = [];
+
+	if ($min_len == null) {
+		$min_len = 0;
+	}
+	if ($max_len == null) {
+		$max_len = PHP_INT_MAX;
+	}
+
 	switch ($format) {
 		case 'email':
 			if (filter_var($var, FILTER_VALIDATE_EMAIL) === false) {
@@ -33,9 +41,10 @@ function is_valid($var, $format = null, $min_len = 0, $max_len = PHP_INT_MAX, $v
 			if (!is_numeric($var)){
 				$errors[] = $var_name . ' is not a number.';
 			}
-		
+			break;
+
 		default:
-			if ($format !== null) {
+			if ($format != null) {
 				if (!preg_match($format, $var)) {
 					$errors[] = $var_name . ' does not match the requirements.';
 				}
@@ -52,4 +61,14 @@ function is_valid($var, $format = null, $min_len = 0, $max_len = PHP_INT_MAX, $v
 	}
 
 	return $errors;
+}
+
+function get_ext($file) {
+	$expl = explode('.', $file);
+	$ext = end($expl);
+	return $ext;
+}
+
+function clean($var) {
+	return addslashes(htmlspecialchars($var));
 }

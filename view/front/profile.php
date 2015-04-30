@@ -2,8 +2,10 @@
 <div class="row">
 	<div class="col-md-6">
 		<h3 class="text-center">Info</h3>
-		User since: <?php echo date('d.m.Y', strtotime($profile['date_created'])); ?><br />
-		Email: <?php echo $profile['email']; ?>
+		<ul class="list-group">
+			<li class="list-group-item">Date of registration: <?php echo date('d.m.Y', strtotime($profile['date_created'])); ?></li>
+			<li class="list-group-item">Email: <?php echo $profile['email']; ?></li>
+		</ul>
 	</div>
 	<div class="col-md-6">
 		<h3 class="text-center">10 newest questions asked</h3>

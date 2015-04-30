@@ -10,8 +10,8 @@
 </div>
 <?php endif; ?>
 <hr />
+<h2>Questions <a href="questions/create/<?php echo $category['id']; ?>" class="btn btn-success pull-right">New question</a></h2>
 <?php if (count($questions)): ?>
-<h3>Questions</h3>
 <div class="list-group">
 	<?php foreach ($questions as $question): ?>
 	<a href="questions/view/<?php echo $question['id']; ?>/<?php echo $question['slug']; ?>" class="list-group-item">

@@ -6,10 +6,14 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title><?php echo isset($title) ? $title . ' :: Forum System' : 'Forum System'; ?></title>
-		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
+		<!-- Main CSS -->
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 		<!-- Bootstrap CSS -->
 		<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+		<?php if (isset($_auto_load_css)): ?>
+		<?php foreach ($_auto_load_css as $css): echo $css; endforeach; ?>
+		<?php endif; ?>
 
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -47,7 +51,7 @@
 						</a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="user/profile">Profile</a></li>
-							<li><a href="questions/new">Create question</a></li>
+							<li><a href="questions/create">Create question</a></li>
 							<?php if ($user->get_logged_user(true)['is_admin']): ?>
 							<li class="inverted"><a href="admin/">Administration</a></li>
 							<?php endif; ?>

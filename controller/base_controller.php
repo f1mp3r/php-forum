@@ -96,4 +96,63 @@ abstract class Base_Controller {
 			}
 		}
 	}
+
+	public function load_asset($asset = [], $options = []) {
+		if (!isset($this->viewBag) || $this->viewBag == null) {
+			$this->viewBag = [];
+		}
+		if (!isset($this->viewBag['_auto_load_css'])) {
+			$this->viewBag['_auto_load_css'] = [];
+		}
+		if (!isset($this->viewBag['_auto_load_js'])) {
+			$this->viewBag['_auto_load_js'] = [];
+		}
+		if (is_array($asset)) {
+			foreach ($asset as $file) {
+				$ext = get_ext($file);
+
+				//TODO: implement $options
+				switch ($ext) {
+					case 'js':
+						$html = '<script type="text/javascript" src="assets/js/' . $file . '"></script>';
+						if (!in_array($html, $this->viewBag['_auto_load_js'])) {
+							$this->viewBag['_auto_load_js'][] = $html;
+						}
+						break;
+					case 'css':
+						$html = '<link rel="stylesheet" href="assets/css/' . $file . '">';
+						if (!in_array($html, $this->viewBag['_auto_load_css'])) {
+							$this->viewBag['_auto_load_css'][] = $html;
+						}
+						break;
+					
+					default:
+						die('Not supported asset format.');
+						break;
+				}
+			}
+		} else {
+			$ext = get_ext($asset);
+
+			//TODO: implement $options
+			switch ($ex) {
+				case 'js':
+					$html = '<script type="text/javascript" src="assets/js/' . $asset . '"></script>';
+					if (!in_array($html, $this->viewBag['_auto_load_js'])) {
+						$this->viewBag['_auto_load_js'][] = $html;
+					}
+					break;
+				case 'css':
+					$html = '<link rel="stylesheet" href="assets/css/' . $asset . '">';
+					if (!in_array($html, $this->viewBag['_auto_load_css'])) {
+						$this->viewBag['_auto_load_css'][] = $html;
+					}
+					break;
+				
+				default:
+					die('Not supported asset format.');
+					break;
+			}
+		}
+	}
 }
