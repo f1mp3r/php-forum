@@ -28,10 +28,10 @@ class Auth
 		return false;
 	}
 	
-	public function login( $username, $password ) {
+	public function login($username, $password) {
 		$db = \Lib\Database::get_instance();
 		$dbconn = $db->get_db();
-		
+		$password = $password . SALT;
 		
 		$statement = $dbconn->prepare("SELECT id FROM users WHERE username = ? AND password = MD5(?) LIMIT 1");
 		$statement->bind_param('ss', $username, $password);

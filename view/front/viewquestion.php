@@ -3,7 +3,7 @@
 	<div class="row">
 		<div class="col-md-3">
 			<ul class="info">
-				<li>Author: </li>
+				<li>Author: <a href="user/profile/<?php echo $author['username']; ?>"><?php echo $author['username']; ?></a></li>
 				<li>
 					<span title="<?php echo date('d.m.Y H:i', strtotime($question['date_created'])); ?>">
 						Added <?php echo time_ago(strtotime($question['date_created'])); ?> ago

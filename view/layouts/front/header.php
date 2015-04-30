@@ -35,11 +35,26 @@
 					<ul class="nav navbar-nav">
 						<li class="active"><a href="home/">Home</a></li>
 					</ul>
+					<?php if(!$user->is_logged_in()): ?>
 					<ul class="nav navbar-nav pull-right">
 						<li><a href="user/signin">Login / Register</a></li>
 					</ul>
+					<?php else: ?>
+					<ul class="nav navbar-nav pull-right">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+							<span class="glyphicon glyphicon-user"></span> <?php echo $user->get_logged_user()['username']; ?> <span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="user/profile">Profile</a></li>
+							<li><a href="questions/new">Create question</a></li>
+							<li class="divider"></li>
+							<li><a href="user/logout">Logout</a></li>
+						</ul>
+					</li>
+					</ul>
+					<?php endif; ?>
 				</div><!-- /.navbar-collapse -->
 			</div>
 		</nav>
 		<div class="container">
-		<?php echo session_id(); ?>

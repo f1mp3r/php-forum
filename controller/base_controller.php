@@ -7,7 +7,6 @@ abstract class Base_Controller {
 	protected $layout = DEFAULT_LAYOUT;
 	protected $viewBag = [];
 	protected $viewRendered = false;
-	protected $user;
 
 	public function __construct($controller, $action) {
 		$this->controller = $controller;
@@ -25,8 +24,16 @@ abstract class Base_Controller {
 		return null;
 	}
 
+	public function user() {
+		return \Lib\Auth::get_instance();
+	}
+
 	public function __set($name, $value) {
 		$this->viewBag[$name] = $value;
+	}
+
+	public function index() {
+		$this->renderView('front/error', ['message' => '404 Page not found']);
 	}
 
 	protected function onInit() {
@@ -34,6 +41,10 @@ abstract class Base_Controller {
 	}
 
 	public function renderView($viewName = null, $data = [], $isPartial = false) {
+		if (!isset($this->viewBag['user'])) {
+			$this->viewBag['user'] = $this->user();
+		}
+
 		if (!$this->viewRendered) {
 			if ($viewName == null) {
 				$viewName = $this->action;
@@ -62,14 +73,14 @@ abstract class Base_Controller {
 		if ($controller == null) {
 			$controller = $this->controller;
 		}
-		$url = "/$controller/$action";
+		$url = "$controller/$action";
 		$paramsUrlEncoded = array_map('urlencode', $params);
 		$paramsJoined = implode('/', $paramsUrlEncoded);
 		if ($paramsJoined != '') {
-			$url = $url . '/' . $paramsJoined;
+			$url .= '/' . $paramsJoined;
 		}
 		
-		header("Location: " . ROOT_DIR . $url);
+		header("Location: " . BASE_URL . $url);
 		die;
 	}
 

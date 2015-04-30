@@ -110,6 +110,28 @@ class Master_Model
 		return null;
 	}
 
+	public function create($data) {
+		if (!count($data)) {
+			die('No data to add.');
+		}
+
+		$keys = [];
+		$vals = [];
+
+		foreach ($data as $key => $value) {
+			$keys[] = '`' . $key . '`';
+			$vals[] = "'" . $this->_db->real_escape_string($value) . "'";
+		}
+
+		$colums = implode(', ', $keys);
+		$values = implode(', ', $vals);
+
+		$query = "INSERT INTO `" . $this->_table . "` (" . $colums . ") VALUES (" . $values . ")";
+		$this->_db->query($query);
+		
+		return $this->_db->affected_rows;
+	}
+
 	public function update($id, $data, $options = []) {
 		$defaults = [
 			'table' => $this->_table,
