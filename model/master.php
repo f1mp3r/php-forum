@@ -92,7 +92,8 @@ class Master_Model
 
 				$query .= ' WHERE ' . $whereArg;
 			} else {
-				$query .= ' WHERE ' . $this->_db->real_escape_string($args['where']);
+				//relying that you clean your where clause
+				$query .= ' WHERE ' . $args['where'];
 			}
 		}
 
@@ -122,7 +123,7 @@ class Master_Model
 			$query .= ' LIMIT ' . $args['limit'];
 		}
 		
-		// echo $query;
+		// echo $query . '<br />';
 
 		$results = $this->_db->query($query);
 		$this->_result = $this->process_results($results);

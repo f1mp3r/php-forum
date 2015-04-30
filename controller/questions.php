@@ -158,4 +158,114 @@ class Questions_Controller extends Base_Controller
 			$this->renderView('front/questions/new', $data);
 		}
 	}
+
+	public function bytag($slug) {
+		$tag = $this->tags->get($slug, 'slug');
+		if ($tag == null) {
+			$this->renderView('front/error', ['title' => 'No such tag', 'message' => 'Such tag does not exist']);
+			return;
+		}
+		$data = [];
+
+		$questions = $this->questions->find([
+			'columns' => ['questions.*'],
+			'join' => [
+				[
+					'key_from' => 'id',
+					'key_to' => 'question_id',
+					'table' => 'questions_tags'
+				],
+				[
+					'key_from' => 'tag_id',
+					'key_to' => 'id',
+					'table' => 'tags',
+					'table_from' => 'questions_tags'
+				]
+			],
+			'where' => 'tags.slug = \'' . clean($slug) . "'"
+		]);
+
+		$data['questions'] = $questions;
+		$data['title'] = 'Questions having the tag "' . $tag['tag'] . '"';
+		$this->renderView('front/questions/search', $data);
+	}
+
+	public function answer($question_id) {
+		$question = $this->questions->get($question_id);
+		$data = [];
+		if ($question == null) {
+			$this->renderView('front/error', ['title' => 'No such question', 'message' => 'Such question does not exist']);
+			return;
+		}
+
+		if (isset($_POST['answer'])) {
+			$errors = [];
+			$text = clean($_POST['text']);
+
+			if (count(is_valid($text, null, 3, null))) {
+				$errors[] = implode('<br />', is_valid($text, null, 3, null, 'The text'));
+			}
+
+			if (count($errors)) {
+				$this->renderView('front/error', ['title' => 'Error', 'message' => 'Error:', 'errors' => $errors]);
+			} else {
+				if ($this->user()->is_logged_in()) {
+					$user_id = $this->user()->get_logged_user()['user_id'];
+					$answer = $this->answers->create([
+						'text' => $text,
+						'user_id' => $user_id,
+						'question_id' => $question_id
+					]);
+
+					if ($answer == 1) {
+						$this->redirect('questions', 'view', [$question_id, $question['slug']]);
+					} else {
+						$this->renderView('front/error', ['title' => 'Error', 'message' => 'Error: could not insert the answer: ' . $this->answers->geterror()]);
+					}
+				} else {
+					if (!isset($_POST['name'])) {
+						$errors[] = 'The name is required for guests';
+					}
+					if (!isset($_POST['email'])) {
+						$errors[] = 'The email is required for guests';
+					}
+
+					if (count($errors)) {
+						$this->renderView('front/error', ['title' => 'Error', 'message' => 'Error:', 'errors' => $errors]);
+					} else {
+						$name = clean($_POST['name']);
+						$email = clean($_POST['email']);
+
+						if (count(is_valid($name, '/^[A-Za-z0-9_\p{Cyrillic}\d\s]+$/u', 2, 50))) {
+							$errors[] = implode('<br />', is_valid($name, '/^[A-Za-z0-9_\p{Cyrillic}\d\s]+$/u', 2, 50, 'The name'));
+						}
+
+						if (count(is_valid($email, 'email'))) {
+							$errors[] = implode('<br />', is_valid($email, 'email', null, null, 'The email'));
+						}
+
+						if (count($errors)) {
+							$this->renderView('front/error', ['title' => 'Error', 'message' => 'Error:', 'errors' => $errors]);
+						} else {
+							$answer = $this->answers->create([
+								'text' => $text,
+								'author_name' => $name,
+								'author_email' => $email,
+								'question_id' => $question_id
+							]);
+
+							if ($answer == 1) {
+								$this->redirect('questions', 'view', [$question_id, $question['slug']]);
+							} else {
+								$this->renderView('front/error', ['title' => 'Error', 'message' => 'Error: could not insert the answer: ' . $this->answers->geterror()]);
+							}
+						}
+					}
+				}
+			}
+			return;
+		}
+
+		$this->renderView('front/questions/answer', $data);
+	}
 }
