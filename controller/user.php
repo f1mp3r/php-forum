@@ -94,4 +94,11 @@ class User_Controller extends Base_Controller
 		$data['title'] = $user['username'] . '\'s profile';
 		$this->renderView('front/profile', $data);
 	}
+
+	public function logout() {
+		if ($this->user()->is_logged_in()) {
+			$this->user()->logout();
+		}
+		$this->redirect('home');
+	}
 }

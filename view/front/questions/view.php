@@ -29,7 +29,7 @@
 				<a href="questions/bytag/<?php echo $tag['slug']; ?>" class="label label-primary"><?php echo $tag['tag']; ?></a>
 			<?php endforeach; ?>
 		<?php else: ?>
-			no tags added
+			no tags added.
 		<?php endif; ?>
 	<?php endif; ?>
 </div>
@@ -50,6 +50,6 @@
 </div>
 <?php else: ?>
 <div class="alert alert-info">
-	No added answers :/
+	No added answers.
 </div>
 <?php endif; ?>
