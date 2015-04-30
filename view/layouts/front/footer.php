@@ -5,8 +5,8 @@
 			</div>
 		</footer>
 		<!-- jQuery -->
-		<script src="//code.jquery.com/jquery-latest.min.js"></script>
+		<script src="assets/js/jquery-1.11.1.min.js"></script>
 		<!-- Bootstrap JavaScript -->
-		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+		<script src="assets/js/bootstrap.min.js"></script>
 	</body>
 </html>

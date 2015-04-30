@@ -3,6 +3,7 @@
 	include_once('system/autoload.php');
 	include_once('controller/base_controller.php');
 	include_once('controller/home.php');
+	date_default_timezone_set ( DEFAULT_TIMEZONE );
 	define('DS', '/');
 	define('ROOT_DIR', dirname(__FILE__) . DS);
 	define('ROOT_PATH', basename(dirname(__FILE__)) . DS);
@@ -44,7 +45,7 @@
 			if (count($components) > 1) {
 				list($controller, $method) = $components;
 				
-				$param = isset( $components[2] ) ? $components[2] : array();
+				$param = isset( $components[2] ) ? explode('/', urldecode($components[2])) : array();
 			}
 		}
 	}
@@ -61,7 +62,7 @@
 		
 		// Call the object and the method
 		if( method_exists( $instance, $method ) ) {
-			call_user_func_array(array($instance, $method), array($param));
+			call_user_func_array(array($instance, $method), $param);
 		} else {
 			call_user_func_array(array($instance,'index'),array());
 		}

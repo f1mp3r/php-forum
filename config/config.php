@@ -10,4 +10,5 @@
 	define('HOME_CONTROLLER', 'Home_Controller');
 	define('DEFAULT_METHOD', 'index');
 	
+	define('DEFAULT_TIMEZONE', 'Europe/Sofia');
 	
