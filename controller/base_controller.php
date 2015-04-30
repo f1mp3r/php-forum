@@ -7,6 +7,7 @@ abstract class Base_Controller {
 	protected $layout = DEFAULT_LAYOUT;
 	protected $viewBag = [];
 	protected $viewRendered = false;
+	protected $user;
 
 	public function __construct($controller, $action) {
 		$this->controller = $controller;
@@ -30,10 +31,6 @@ abstract class Base_Controller {
 
 	protected function onInit() {
 		// Override this function to initialize the controller
-	}
-
-	public function index() {
-		$this->renderView();
 	}
 
 	public function renderView($viewName = null, $data = [], $isPartial = false) {
@@ -71,7 +68,8 @@ abstract class Base_Controller {
 		if ($paramsJoined != '') {
 			$url = $url . '/' . $paramsJoined;
 		}
-		header("Location: $url");
+		
+		header("Location: " . ROOT_DIR . $url);
 		die;
 	}
 
