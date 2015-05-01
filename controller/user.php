@@ -10,6 +10,16 @@ class User_Controller extends Base_Controller
 	public function signin() {
 		$data = [];
 		if (isset($_POST['signin'])) {
+			// Anti csrf
+			try
+			{
+				\Lib\NoCSRF::check('csrf_token', $_POST, true, 60 * 10, false);
+			}
+			catch (\Exception $e)
+			{
+				$this->renderView('front/error', ['message' => 'Your session has expired.', 'title' => 'Error']);
+				return;
+			}
 			if ($this->user()->login($_POST['username'], $_POST['password'])) {
 				$this->redirect('user', 'profile');
 			} else {
@@ -17,15 +27,24 @@ class User_Controller extends Base_Controller
 			}
 		}
 
-		// anti-spam word
-		$words = ['apple', 'chocolate', 'heisenberg', 'ironman', 'avengers'];
-		$_SESSION['safeword'] = $words[rand(0, count($words) - 1)];
+		$data['token'] = \Lib\NoCSRF::generate('csrf_token');
 		$data['title'] = 'Sign up or sign in';
 		$this->renderView('front/signin', $data);
 	}
 
 	public function signup() {
 		if (isset($_POST['signup'])) {
+			// Anti csrf
+			try
+			{
+				\Lib\NoCSRF::check('csrf_token', $_POST, true, 60 * 10, false);
+			}
+			catch (\Exception $e)
+			{
+				$this->renderView('front/error', ['message' => 'Your session has expired.', 'title' => 'Error']);
+				return;
+			}
+			
 			$username = $_POST['username'];
 			$password = $_POST['password'];
 			$password_repeat = $_POST['password_repeat'];

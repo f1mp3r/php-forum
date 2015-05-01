@@ -3,6 +3,7 @@
 	include_once('system/autoload.php');
 	include_once('controller/base_controller.php');
 	include_once('controller/home.php');
+	session_start();
 	date_default_timezone_set ( DEFAULT_TIMEZONE );
 	define('DS', '/');
 	define('ROOT_DIR', dirname(__FILE__) . DS);
@@ -17,7 +18,7 @@
 			throw new Exception('Could not load ' . $name . ':<br />' . $e);
 		}
 	}
-
+	
 	//FC pattern
 	$request_home = DS . ROOT_PATH;
 	$request = $_SERVER['REQUEST_URI'];

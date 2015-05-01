@@ -46,6 +46,7 @@ class Questions_Controller extends Admin_Controller
 			$tagsAsNames[] = $tag['tag'];
 		}
 		$data['tags'] = implode(', ', $tagsAsNames);
+		$data['token'] = \Lib\NoCSRF::generate('csrf_token');
 
 		$this->renderView('admin/questions/view', $data);
 	}
@@ -71,6 +72,16 @@ class Questions_Controller extends Admin_Controller
 		}
 
 		if (isset($_POST['edit'])) {
+			// Anti csrf
+			try
+			{
+				\Lib\NoCSRF::check('csrf_token', $_POST, true, 60 * 10, false);
+			}
+			catch (\Exception $e)
+			{
+				$this->renderView('front/error', ['message' => 'Your session has expired.', 'title' => 'Error']);
+				return;
+			}
 			$errors = [];
 			$slugify = new \Lib\Slugify();
 			$title = isset($_POST['title']) ? $_POST['title'] : $question['title'];
@@ -160,18 +171,14 @@ class Questions_Controller extends Admin_Controller
 			if (count($errors)) {
 				$this->renderView('front/error', ['message' => 'The following errors occured:', 'title' => 'Error', 'errors' => $errors]);
 			} else {
-				if ($question['title'] != $title && $question['slug'] != $slug && $question['category_id'] != $category_id && $question['text'] != $text) {
-					$update = $this->questions->update($id, [
-						'title' => $title,
-						'slug' => $slug,
-						'category_id' => $category_id,
-						'text' => $text
-					]);
-				} else {
-					$update = 1;
-				}
+				$update = $this->questions->update($id, [
+					'title' => $title,
+					'slug' => $slug,
+					'category_id' => $category_id,
+					'text' => $text
+				]);
 
-				if ($update == 1) {
+				if ($update == 1 || $update == 0) {
 					$newTags = array_map('trim', array_filter(explode(',', $tags)));
 					$diff_tags = array_diff($tagsAsNames, $newTags);
 					// echo '<pre>';

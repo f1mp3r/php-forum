@@ -1,5 +1,6 @@
 <h1 class="text-center">Create a question</h1>
 <form method="POST">
+	<input type="hidden" name="csrf_token" value="<?php echo $token; ?>">
 	<div class="row">
 		<div class="col-md-2 text-right">
 			<p>Title</p>

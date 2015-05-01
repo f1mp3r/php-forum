@@ -8,7 +8,6 @@ class Auth
 	private function __construct() {
 		$time = 60 * 60;
 		session_set_cookie_params($time, "/");
-		session_start();
 	}
 	
 	public static function get_instance() {

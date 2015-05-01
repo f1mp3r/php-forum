@@ -3,23 +3,24 @@
 <hr />
 <p>Added by: <?php echo $user['username']; ?> on <?php echo date('d.m.Y H:i', strtotime($question['date_created'])); ?></p>
 <form method="post" action="questions/edit/<?php echo $question['id']; ?>">
-<p>Title: <input type="text" name="title" value="<?php echo $question['title']; ?>" /></p>
-<p>Category:
-	<select name="category_id">
-		<?php
-			foreach ($categories as $category){
-				echo '<option value="' . $category['id'] . '"' . (($question['category_id'] == $category['id']) ? ' selected="selected"' : null) . '>' . $category['name'] . '</option>';
-			}
-		?>
-	</select>
-</p>
-<p>Tags: <input type="text" name="tags" value="<?php echo $tags; ?>" /></p>
-<p>
-	Text: <br />
-	<textarea name="text" style="height: 300px" class="form-control"><?php echo $question['text']; ?></textarea>
-</p>
-<hr />
-<button class="btn btn-primary center-block" type="submit" name="edit">Edit question</button>
+	<input type="hidden" name="csrf_token" value="<?php echo $token; ?>">
+	<p>Title: <input type="text" name="title" value="<?php echo $question['title']; ?>" /></p>
+	<p>Category:
+		<select name="category_id">
+			<?php
+				foreach ($categories as $category){
+					echo '<option value="' . $category['id'] . '"' . (($question['category_id'] == $category['id']) ? ' selected="selected"' : null) . '>' . $category['name'] . '</option>';
+				}
+			?>
+		</select>
+	</p>
+	<p>Tags: <input type="text" name="tags" value="<?php echo $tags; ?>" /></p>
+	<p>
+		Text: <br />
+		<textarea name="text" style="height: 300px" class="form-control"><?php echo $question['text']; ?></textarea>
+	</p>
+	<hr />
+	<button class="btn btn-primary center-block" type="submit" name="edit">Edit question</button>
 </form>
 <h3 class="text-center">Answers</h3>
 <?php

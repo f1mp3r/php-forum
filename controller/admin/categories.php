@@ -20,9 +20,20 @@ class Categories_Controller extends Admin_Controller
 	}
 
 	public function create() {
+
 		$data = [];
 
 		if (isset($_POST['submit'])) {
+			// Anti csrf
+			try
+			{
+				\Lib\NoCSRF::check('csrf_token', $_POST, true, 60 * 10, false);
+			}
+			catch (\Exception $e)
+			{
+				$this->renderView('front/error', ['message' => 'Your session has expired.', 'title' => 'Error']);
+				return;
+			}
 			$slugify = new \Lib\Slugify();
 			$errors = [];
 
@@ -55,6 +66,7 @@ class Categories_Controller extends Admin_Controller
 			return;
 		}
 
+		$data['token'] = \Lib\NoCSRF::generate('csrf_token');
 		$data['categories'] = $this->categories->find();
 		$data['title'] = 'Create a category';
 		
@@ -71,6 +83,16 @@ class Categories_Controller extends Admin_Controller
 		}
 
 		if (isset($_POST['submit'])) {
+			// Anti csrf
+			try
+			{
+				\Lib\NoCSRF::check('csrf_token', $_POST, true, 60 * 10, false);
+			}
+			catch (\Exception $e)
+			{
+				$this->renderView('front/error', ['message' => 'Your session has expired.', 'title' => 'Error']);
+				return;
+			}
 			$slugify = new \Lib\Slugify();
 			$errors = [];
 
@@ -103,6 +125,7 @@ class Categories_Controller extends Admin_Controller
 			return;
 		}
 
+		$data['token'] = \Lib\NoCSRF::generate('csrf_token');
 		$data['category'] = $category;
 		$data['categories'] = $this->categories->find(['where' => ['id', '!=', $id]]);
 		$data['title'] = 'Edit ' . $category['name'];

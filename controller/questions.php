@@ -54,6 +54,16 @@ class Questions_Controller extends Base_Controller
 		$data = [];
 
 		if (isset($_POST['post'])) {
+			// Anti csrf
+			try
+			{
+				\Lib\NoCSRF::check('csrf_token', $_POST, true, 60 * 10, false);
+			}
+			catch (\Exception $e)
+			{
+				$this->renderView('front/error', ['message' => 'Your session has expired.', 'title' => 'Error']);
+				return;
+			}
 			$errors = [];
 			$slugify = new \Lib\Slugify();
 			$title = $_POST['title'];
@@ -143,6 +153,7 @@ class Questions_Controller extends Base_Controller
 			return;
 		} else {
 			$data['title'] = 'New question';
+			$data['token'] = \Lib\NoCSRF::generate('csrf_token');
 			$data['boardid'] = $boardid;
 
 			$boards = $this->categories->find();
@@ -152,10 +163,6 @@ class Questions_Controller extends Base_Controller
 				'bootstrap-select.min.css',
 				'bootstrap-select.min.js',
 				'cust/add_question.js'
-				// 'bootstrap-tagsinput.css',
-				// 'bootstrap3-typeahead.min.js',
-				// 'typeahead.bundle.js',
-				// 'bootstrap-tagsinput.js',
 			]);
 			$this->renderView('front/questions/new', $data);
 		}
@@ -221,6 +228,16 @@ class Questions_Controller extends Base_Controller
 		}
 
 		if (isset($_POST['answer'])) {
+			// Anti csrf
+			try
+			{
+				\Lib\NoCSRF::check('csrf_token', $_POST, true, 60 * 10, false);
+			}
+			catch (Exception $e)
+			{
+				$this->renderView('front/error', ['message' => 'Your session has expired.', 'title' => 'Error']);
+				return;
+			}
 			$errors = [];
 			$text = clean($_POST['text']);
 

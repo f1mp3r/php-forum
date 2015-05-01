@@ -8,6 +8,7 @@
 		<?php endif; ?>
 		<h3 class="text-center">Sign in</h3>
 		<form method="post">
+			<input type="hidden" name="csrf_token" value="<?php echo $token; ?>">
 			<p>
 				<label for="signin-username" class="sr-only">Username</label>
 				<input type="text" name="username" placeholder="Username" id="signin-username" class="form-control" required="required" />
@@ -22,6 +23,7 @@
 	<div class="col-md-4 col-md-offset-1">
 		<h3 class="text-center">Sign up</h3>
 		<form method="post" action="user/signup">
+			<input type="hidden" name="csrf_token" value="<?php echo $token; ?>">
 			<p>
 				<label for="signin-username" class="sr-only">Username</label>
 				<input type="text" name="username" placeholder="Username" id="signin-username" class="form-control" required="required" />

@@ -1,5 +1,6 @@
 <h1 class="text-center">Answer a question</h1>
 <form method="post">
+	<input type="hidden" name="csrf_token" value="<?php echo $token; ?>">
 	<div class="row">
 		<?php if ($user->is_logged_in()): ?>
 		<div class="col-md-12">
