@@ -1,5 +1,6 @@
 <h3 class="text-center">Categories - <?php echo $title; ?></h3>
 <form method="post" action="categories/<?php echo (isset($edit)) ? 'edit/' . $category['id'] : 'create' ?>" class="form-inline">
+	<input type="hidden" name="csrf_token" value="<?php echo $token; ?>">
 	<input type="text" class="form-control" name="name" placeholder="Category name" value="<?php echo (isset($category)) ? $category['name'] : ''; ?>" />
 	<select name="parent_id" class="form-control">
 		<option value="0">Choose a parent category</option>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<base href="http://localhost/softuni/webdev/php-forum/" />
+		<base href="<?php echo BASE_URL; ?>" />
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -59,7 +59,7 @@
 							<li><a href="user/profile"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
 							<li><a href="questions/create"><i class="glyphicon glyphicon-plus"></i> Create question</a></li>
 							<?php if ($user->get_logged_user(true)['is_admin']): ?>
-							<li class="inverted"><a href="admin/"><i class="glyphicon glyphicon-wrench"></i> Administration</a></li>
+							<li class="inverted"><a href="admin/home/"><i class="glyphicon glyphicon-wrench"></i> Administration</a></li>
 							<?php endif; ?>
 							<li class="divider"></li>
 							<li><a href="user/logout"><i class="glyphicon glyphicon-off"></i> Logout</a></li>

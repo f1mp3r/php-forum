@@ -190,13 +190,13 @@ class Questions_Controller extends Admin_Controller
 
 				if ($update == 1 || $update == 0) {
 					$newTags = array_map('trim', array_filter(explode(',', $tags)));
-					echo $tags;
+					// echo $tags;
 					$diff_tags = array_diff($tagsAsNames, $newTags);
-					echo '<pre>';
-					print_r($tagsAsNames);
-					print_r($newTags);
-					print_r($diff_tags);
-					echo '</pre>';
+					// echo '<pre>';
+					// print_r($tagsAsNames);
+					// print_r($newTags);
+					// print_r($diff_tags);
+					// echo '</pre>';
 					foreach ($diff_tags as $tag) {
 						$slugged = $slugify->slugify($tag);
 						$get_tag = $this->tags->get($tag, 'tag');

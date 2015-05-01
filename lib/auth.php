@@ -38,11 +38,11 @@ class Auth
 		
 		$statement->execute();
 		
-		$result_set = $statement->get_result();
+		 $statement->bind_result($id);
 		
-		if ( $row = $result_set->fetch_assoc() ) {
+		if ( $statement->fetch() ) {
 			$_SESSION['username'] = $username;
-			$_SESSION['user_id'] = $row['id'];
+			$_SESSION['user_id'] = $id;
 			return true;
 		}
 		

@@ -235,7 +235,7 @@ class Questions_Controller extends Base_Controller
 			{
 				\Lib\NoCSRF::check('csrf_token', $_POST, true, 60 * 10, false);
 			}
-			catch (Exception $e)
+			catch (\Exception $e)
 			{
 				$this->renderView('front/error', ['message' => 'Your session has expired.', 'title' => 'Error']);
 				return;
@@ -307,6 +307,8 @@ class Questions_Controller extends Base_Controller
 			return;
 		}
 
+		$data['title'] = 'Answer question';
+		$data['token'] = \Lib\NoCSRF::generate('csrf_token');
 		$this->renderView('front/questions/answer', $data);
 	}
 }
