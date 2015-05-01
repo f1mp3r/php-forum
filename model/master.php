@@ -38,7 +38,7 @@ class Master_Model
 		$this->_db = $db_object::get_db();
 	}
 
-	public function find($options = []) {
+	public function find($options = [], $count = false) {
 		$defaults = [
 			'limit' => $this->_limit,
 			'table' => $this->_table,
@@ -85,9 +85,9 @@ class Master_Model
 				$whereArgument = $args['where'];
 
 				if (count($whereArgument) == 3) {
-					$whereArg = '`' . $whereArgument[0] . '` ' . $whereArgument[1] . " '" . $this->_db->real_escape_string($whereArgument[2]) . "'";
+					$whereArg = '`' . $whereArgument[0] . '` ' . $whereArgument[1] . " '" . clean($whereArgument[2]) . "'";
 				} else {
-					$whereArg = '`' . $whereArgument[0] . "` = '" . $this->_db->real_escape_string($whereArgument[1]) . "'";
+					$whereArg = '`' . $whereArgument[0] . "` = '" . clean($whereArgument[1]) . "'";
 				}
 
 				$query .= ' WHERE ' . $whereArg;
@@ -119,16 +119,38 @@ class Master_Model
 			}
 		}
 
-		if (!empty($args['limit']) && is_numeric($args['limit']) && $args['limit'] > 0) {
-			$query .= ' LIMIT ' . $args['limit'];
+		if (!empty($args['limit'])) {
+			if (is_array($args['limit'])) {
+				if (count($args['limit']) == 2) {
+					$offset = (int) $args['limit'][0];
+					$count = (int) $args['limit'][1];
+
+					if ($offset >= 0 && $count > 0) {
+						$query .= ' LIMIT ' . $offset . ', ' . $count;
+					}
+				}
+			} else {
+				if (is_numeric($args['limit']) && $args['limit'] > 0) {
+					$query .= ' LIMIT ' . $args['limit'];
+				}
+			}
 		}
 		
 		// echo $query . '<br />';
 
 		$results = $this->_db->query($query);
+		if ($count) {
+			return $results;
+		}
+
 		$this->_result = $this->process_results($results);
 
 		return $this->_result;
+	}
+
+	public function count($options) {
+		$result = $this->find($options, true);
+		return $result->num_rows;
 	}
 
 	public function get($key = 0, $keyName = 'id', $options = []) {
@@ -201,6 +223,54 @@ class Master_Model
 		$this->_db->query($query);
 		
 		return $this->_db->affected_rows;
+	}
+
+	public function delete($id) {
+		if (!is_numeric($id) || $id < 0) {
+			return -2;
+		}
+
+		$result = $this->_db->query("DELETE FROM `" . $this->_table . "` WHERE `id` = '" . $id . "'");
+		return $result;
+	}
+
+	public function paginate($data_args, $url = '?page=', $current_page = 0, $row_per_page = DEFAULT_ITEMS_PER_PAGE) {
+		if (isset($data_args['limit'])) {
+			unset($data_args['limit']);
+		}
+		$output = ['data', 'pagination' => null];
+
+		$data_count = $this->count($data_args);
+
+		if ($data_count <= $row_per_page) {
+			$output['data'] = $this->find($data_args);
+			return $output;
+		} else {
+			$total_pages = ceil($data_count / $row_per_page);
+			if ($current_page < 1) {
+				$current_page = 1;
+			}
+
+			$output['pagination'] .= '<nav><ul class="pagination">';
+			// make pages
+			$output['pagination'] .= '<li' . (($current_page == 1) ? ' class="disabled"' : null) . '><a href="' . $url . '1">First</a></li>';
+			$output['pagination'] .= '<li' . (($current_page == 1) ? ' class="disabled"' : null) . '><a href="' . $url . max([$current_page - 1, 1]) . '" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>';
+			foreach(range(1, $total_pages) as $page){
+				if($page == 1 || $page == $total_pages || ($page >= $current_page - 2 && $page <= $current_page + 2)){
+					$output['pagination'] .= '<li' . (($page == $current_page) ? ' class="active"' : null) . '><a href="' . $url . (int)$page . '">' . $page . '</a></li>';
+				}
+			}
+			$output['pagination'] .= '<li' . (($current_page == $total_pages) ? ' class="disabled"' : null) . '><a href="' . $url . min([$current_page + 1, $total_pages]) . '" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>';
+			$output['pagination'] .= '<li' . (($current_page == $total_pages) ? ' class="disabled"' : null) . '><a href="' . $url . $total_pages . '">Last</a></li>';
+			$output['pagination'] .= '</ul></nav>';
+
+			$offset = ($current_page - 1) * $row_per_page;
+			$data_args['limit'] = [$offset, $row_per_page];
+			$data = $this->find($data_args);
+			$output['data'] = $data;
+
+			return $output;
+		}
 	}
 
 	protected function process_results($results_set) {

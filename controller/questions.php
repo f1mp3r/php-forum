@@ -8,7 +8,7 @@ class Questions_Controller extends Base_Controller
 		$this->load_models(['questions', 'categories', 'answers', 'tags', 'users', 'questions_tags']);
 	}
 
-	public function view($id, $slug, $page = 1) {
+	public function view($id = 0, $slug = null, $page = 1) {
 		$slug = urldecode($slug);
 		$data = [];
 		$question = $this->questions->get($id);
@@ -133,7 +133,8 @@ class Questions_Controller extends Base_Controller
 					if (count($errors)) {
 						$this->renderView('front/error', ['message' => 'Error: ' . $this->questions->geterror(), 'title' => 'Error', 'errors' => $errors]);
 					} else {
-						$this->renderView('front/success', ['message' => 'The question was submitted.', 'title' => 'Error']);
+						$this->redirect('questions', 'view', [$question['id'], $question['slug']]);
+						$this->renderView('front/success', ['message' => 'The question was submitted.', 'title' => 'Question created']);
 					}
 				} else {
 					$this->renderView('front/error', ['message' => 'Could not insert the question: ' . $this->questions->geterror(), 'title' => 'Error']);

@@ -35,22 +35,22 @@
 		if (strpos($request, $request_home) !== false) {
 			$request = substr($request, strpos($request, $request_home) + strlen($request_home));
 			
-			if( 0 === strpos( $request, 'admin' ) ) {
+			if(strpos($request, 'admin') === 0) {
 				$admin_routing = true;
-				include_once 'controllers/admin/admin_controller.php';
+				include_once 'controller/admin/admin_controller.php';
 				$request = substr( $request, strlen( 'admin/' ) );
 			}
 			
-			$components = explode( DS, $request, 3 );
+			$components = explode(DS, $request, 3);
 			if (count($components) > 1) {
 				list($controller, $method) = $components;
 				
-				$param = isset( $components[2] ) ? explode('/', urldecode($components[2])) : array();
+				$param = isset($components[2]) ? explode('/', urldecode($components[2])) : array();
 			}
 		}
 	}
 
-	if (isset($controller) && file_exists('controller/' . $controller . '.php')) {
+	if (isset($controller) && (file_exists('controller/' . $controller . '.php') || ($admin_routing && file_exists('controller/admin/' . $controller . '.php')))) {
 		$admin_folder = $admin_routing ? 'admin/' : '';
 		include_once('controller/' . $admin_folder . $controller . '.php');
 
@@ -58,6 +58,7 @@
 		
 		// Form the controller class
 		$controller_class = $admin_namespace . '\Controllers\\' . ucfirst( $controller ) . '_Controller';
+		// echo $controller_class . '->' . $method . '()';
 		$instance = new $controller_class($controller_class, $method);
 		
 		// Call the object and the method

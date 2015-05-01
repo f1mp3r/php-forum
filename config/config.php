@@ -13,4 +13,5 @@
 	define('DEFAULT_TIMEZONE', 'Europe/Sofia');
 	define('SALT', 'My$3cR37$417');
 	define('BASE_URL', 'http://localhost/softuni/webdev/php-forum/');
+	define('DEFAULT_ITEMS_PER_PAGE', 10);
 	
