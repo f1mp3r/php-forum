@@ -114,13 +114,13 @@ abstract class Base_Controller {
 				//TODO: implement $options
 				switch ($ext) {
 					case 'js':
-						$html = '<script type="text/javascript" src="assets/js/' . $file . '"></script>';
+						$html = '<script type="text/javascript" src="' . BASE_URL . 'assets/js/' . $file . '"></script>';
 						if (!in_array($html, $this->viewBag['_auto_load_js'])) {
 							$this->viewBag['_auto_load_js'][] = $html;
 						}
 						break;
 					case 'css':
-						$html = '<link rel="stylesheet" href="assets/css/' . $file . '">';
+						$html = '<link rel="stylesheet" href="' . BASE_URL . 'assets/css/' . $file . '">';
 						if (!in_array($html, $this->viewBag['_auto_load_css'])) {
 							$this->viewBag['_auto_load_css'][] = $html;
 						}

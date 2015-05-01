@@ -15,6 +15,8 @@
 				<a href="questions/view/<?php echo $question['id'] . '/' . $question['slug']; ?>" class="list-group-item"><?php echo $question['title']; ?></a>
 			<?php endforeach; ?>
 			</div>
+		<?php else: ?>
+			<div class="alert alert-info">No asked questions.</div>
 		<?php endif; ?>
 	</div>
 </div>

@@ -5,6 +5,7 @@ class Categories_Controller extends Admin_Controller
 {
 	public function onInit() {
 		$this->load_models(['categories']);
+		$this->thisPage = 'categories';
 	}
 
 	public function all() {
@@ -15,6 +16,7 @@ class Categories_Controller extends Admin_Controller
 		}
 		$data['categories'] = $categories;
 		$data['title'] = 'Categories administration';
+		$data['thisPage'] = $this->thisPage;
 
 		$this->renderView('admin/categories/list', $data);
 	}
@@ -22,6 +24,7 @@ class Categories_Controller extends Admin_Controller
 	public function create() {
 
 		$data = [];
+		$data['thisPage'] = $this->thisPage;
 
 		if (isset($_POST['submit'])) {
 			// Anti csrf
@@ -75,6 +78,7 @@ class Categories_Controller extends Admin_Controller
 
 	public function edit($id) {
 		$data = [];
+		$data['thisPage'] = $this->thisPage;
 		$data['edit'] = true;
 		$category = $this->categories->get($id);
 		if ($category == null) {

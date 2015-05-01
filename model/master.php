@@ -163,7 +163,7 @@ class Master_Model
 		return $this->_result;
 	}
 
-	public function count($options) {
+	public function count($options = []) {
 		$result = $this->find($options, true);
 		return $result->num_rows;
 	}

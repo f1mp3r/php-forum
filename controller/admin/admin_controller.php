@@ -4,6 +4,8 @@ namespace Admin\Controllers;
 
 class Admin_Controller extends \Controllers\Base_Controller
 {
+	protected $thisPage = null;
+	
 	public function __construct() {
 		if ($this->user()->is_logged_in()) {
 			$userinfo = $this->user()->get_logged_user(true);

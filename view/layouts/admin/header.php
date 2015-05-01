@@ -29,10 +29,10 @@
 				<div class="row">
 					<div class="col-lg-2 col-md-4 col-sm-4">
 						<ul class="nav nav-pills nav-stacked">
-							<li role="presentation" class="active"><a href="home/">Dashboard</a></li>
-							<li role="presentation"><a href="questions/all">Questions</a></li>
-							<li role="presentation"><a href="categories/all">Categories</a></li>
-							<li role="presentation"><a href="../">Back to website</a></li>
+							<li<?php if (isset($thisPage)) {echo $thisPage == null || $thisPage == 'home' ? ' class="active"' : null;} ?> role="presentation"><a href="home/"><i class="glyphicon glyphicon-home"></i> Dashboard</a></li>
+							<li<?php if (isset($thisPage)) {echo $thisPage == 'questions' ? ' class="active"' : null;} ?> role="presentation"><a href="questions/all"><i class="glyphicon glyphicon-align-justify"></i> Questions</a></li>
+							<li<?php if (isset($thisPage)) {echo $thisPage == 'categories' ? ' class="active"' : null;} ?> role="presentation"><a href="categories/all"><i class="glyphicon glyphicon-list-alt"></i> Categories</a></li>
+							<li role="presentation"><a href="../"><i class="glyphicon glyphicon-step-backward"></i> Back to website</a></li>
 						</ul>
 					</div>
 					<div class="col-lg-10 col-md-8 col-sm-8">

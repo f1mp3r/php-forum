@@ -24,7 +24,7 @@
 		<div class="col-md-2 text-right">
 			<p>Tags</p>
 		</div>
-		<div class="col-md-10"><input type="text" name="tags" id="tags" placeholder="Question tags" class="form-control" /></div>
+		<div class="col-md-10"><div id="tags"></div><input type="hidden" name="tags" /></div>
 	</div>
 	<div class="row">
 		<div class="col-md-12">

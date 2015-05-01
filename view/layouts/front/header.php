@@ -37,13 +37,13 @@
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="navigation">
 					<ul class="nav navbar-nav">
-						<li><a href="home/">Home</a></li>
+						<li><a href="home/"><i class="glyphicon glyphicon-home"></i> Home</a></li>
 					</ul>
-					<form class="navbar-form navbar-left" action="javascript:search();" method="post" data-action="questions/search/" id="search-form" role="search">
+					<form class="navbar-form navbar-left navbar-input-group" action="javascript:search();" method="post" data-action="questions/search/" id="search-form" role="search">
 						<div class="form-group">
 							<input type="text" class="form-control" id="search-input" placeholder="Search" />
 						</div>
-						<button type="button" id="search-btn" class="btn btn-default">Submit</button>
+						<button type="button" id="search-btn" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></button>
 					</form>
 					<?php if(!$user->is_logged_in()): ?>
 					<ul class="nav navbar-nav pull-right">
@@ -56,13 +56,13 @@
 							<span class="glyphicon glyphicon-user"></span> <?php echo $user->get_logged_user()['username']; ?> <span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="user/profile">Profile</a></li>
-							<li><a href="questions/create">Create question</a></li>
+							<li><a href="user/profile"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+							<li><a href="questions/create"><i class="glyphicon glyphicon-plus"></i> Create question</a></li>
 							<?php if ($user->get_logged_user(true)['is_admin']): ?>
-							<li class="inverted"><a href="admin/">Administration</a></li>
+							<li class="inverted"><a href="admin/"><i class="glyphicon glyphicon-wrench"></i> Administration</a></li>
 							<?php endif; ?>
 							<li class="divider"></li>
-							<li><a href="user/logout">Logout</a></li>
+							<li><a href="user/logout"><i class="glyphicon glyphicon-off"></i> Logout</a></li>
 						</ul>
 					</li>
 					</ul>

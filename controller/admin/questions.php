@@ -5,10 +5,12 @@ class Questions_Controller extends Admin_Controller
 {
 	public function onInit() {
 		$this->load_models(['questions', 'users', 'tags', 'categories', 'questions_tags', 'answers']);
+		$this->thisPage = 'questions';
 	}
 
 	public function all($page = 1) {
 		$data = [];
+		$data['thisPage'] = $this->thisPage;
 		$questionData = $this->questions->paginate(['orderby' => ['date_created' => 'DESC', 'id' => 'DESC']], 'questions/all/', $page, DEFAULT_ITEMS_PER_PAGE);
 		$questions = $questionData['data'];
 		$pagination = $questionData['pagination'];
@@ -22,6 +24,7 @@ class Questions_Controller extends Admin_Controller
 	public function view($id) {
 		$question = $this->questions->get($id);
 		$data = [];
+		$data['thisPage'] = $this->thisPage;
 		if ($question == null) {
 			$this->renderView('front/error', ['message' => 'Question with this id does not exist.']);
 			return;
@@ -47,6 +50,13 @@ class Questions_Controller extends Admin_Controller
 		}
 		$data['tags'] = implode(', ', $tagsAsNames);
 		$data['token'] = \Lib\NoCSRF::generate('csrf_token');
+		$this->load_asset([
+			'bootstrap-select.min.css',
+			'bootstrap-tags.css',
+			'bootstrap-select.min.js',
+			'bootstrap-tags.min.js',
+			'cust/add_question.js'
+		]);
 
 		$this->renderView('admin/questions/view', $data);
 	}
@@ -180,12 +190,13 @@ class Questions_Controller extends Admin_Controller
 
 				if ($update == 1 || $update == 0) {
 					$newTags = array_map('trim', array_filter(explode(',', $tags)));
+					echo $tags;
 					$diff_tags = array_diff($tagsAsNames, $newTags);
-					// echo '<pre>';
-					// print_r($tagsAsNames);
-					// print_r($newTags);
-					// print_r($diff_tags);
-					// echo '</pre>';
+					echo '<pre>';
+					print_r($tagsAsNames);
+					print_r($newTags);
+					print_r($diff_tags);
+					echo '</pre>';
 					foreach ($diff_tags as $tag) {
 						$slugged = $slugify->slugify($tag);
 						$get_tag = $this->tags->get($tag, 'tag');

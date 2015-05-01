@@ -161,7 +161,9 @@ class Questions_Controller extends Base_Controller
 
 			$this->load_asset([
 				'bootstrap-select.min.css',
+				'bootstrap-tags.css',
 				'bootstrap-select.min.js',
+				'bootstrap-tags.min.js',
 				'cust/add_question.js'
 			]);
 			$this->renderView('front/questions/new', $data);
