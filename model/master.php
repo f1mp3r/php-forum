@@ -81,16 +81,31 @@ class Master_Model
 		// filter the where clause
 		if (!empty($args['where'])) {
 			if (is_array($args['where'])) {
-				$whereArg;
-				$whereArgument = $args['where'];
-
-				if (count($whereArgument) == 3) {
-					$whereArg = '`' . $whereArgument[0] . '` ' . $whereArgument[1] . " '" . clean($whereArgument[2]) . "'";
+				if (is_array($args['where'][0])) {
+					$whereArg = '';
+					foreach ($args['where'] as $whereArgument) {
+						if (!is_array($whereArgument) && in_array(trim(strtolower($whereArgument)), ['or', 'and'])) {
+							$whereArg .= ' ' . $whereArgument . ' ';
+							continue;
+						}
+						if (count($whereArgument) == 3) {
+							$whereArg .= ' `' . $whereArgument[0] . '` ' . $whereArgument[1] . " '" . clean($whereArgument[2]) . "' ";
+						} else {
+							$whereArg .= ' `' . $whereArgument[0] . "` = '" . clean($whereArgument[1]) . "' ";
+						}
+					}
+					$query .= ' WHERE ' . $whereArg;
 				} else {
-					$whereArg = '`' . $whereArgument[0] . "` = '" . clean($whereArgument[1]) . "'";
-				}
+					$whereArg;
+					$whereArgument = $args['where'];
 
-				$query .= ' WHERE ' . $whereArg;
+					if (count($whereArgument) == 3) {
+						$whereArg = '`' . $whereArgument[0] . '` ' . $whereArgument[1] . " '" . clean($whereArgument[2]) . "'";
+					} else {
+						$whereArg = '`' . $whereArgument[0] . "` = '" . clean($whereArgument[1]) . "'";
+					}
+					$query .= ' WHERE ' . $whereArg;
+				}
 			} else {
 				//relying that you clean your where clause
 				$query .= ' WHERE ' . $args['where'];
@@ -192,7 +207,7 @@ class Master_Model
 
 		$args = array_merge($defaults, $options);
 
-		$query = 'UPDATE ' . $args['table'] . ' SET ';
+		$query = 'UPDATE `' . $args['table'] . '` SET ';
 
 		$updateFieldsArray = [];
 		foreach ($data as $column => $newValue) {
@@ -219,18 +234,20 @@ class Master_Model
 		} else {
 			$query .= ' WHERE `id` = ' . (int) $id;
 		}
-
+		// echo $query;
 		$this->_db->query($query);
 		
 		return $this->_db->affected_rows;
 	}
 
-	public function delete($id) {
+	public function delete($id, $customWhere = null) {
 		if (!is_numeric($id) || $id < 0) {
 			return -2;
 		}
 
-		$result = $this->_db->query("DELETE FROM `" . $this->_table . "` WHERE `id` = '" . $id . "'");
+		$query = "DELETE FROM `" . $this->_table . "` WHERE " . (($customWhere == null) ? "`id` = '" . $id . "'" : $customWhere);
+		// echo $query;
+		$result = $this->_db->query($query);
 		return $result;
 	}
 

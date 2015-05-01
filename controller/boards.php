@@ -9,10 +9,10 @@ class Boards_Controller extends Base_Controller
 	}
 
 	public function index() {
-		//eh?
+		$this->redirect('home');
 	}
 
-	public function view($slug) {
+	public function view($slug, $page = 1) {
 		$slug = urldecode($slug);
 		$data = [];
 		$currentCategory = $this->categories->get($slug, 'slug', ['columns' => ['name', 'id']]);
@@ -22,13 +22,15 @@ class Boards_Controller extends Base_Controller
 			$this->renderView('front/error', ['message' => 'No such board exists']);
 			return;
 		}
+		$questionsData = $this->questions->paginate([
+			'where' => ['category_id', $currentCategory['id']],
+			'columns' => ['title', 'slug', 'views', 'id', 'date_created']
+		], 'boards/view/' . $slug . '/', $page);
 
 		$data['category'] = $currentCategory;
 		$data['title'] = $currentCategory['name'];
-		$data['questions'] = $this->questions->find([
-			'where' => ['category_id', $currentCategory['id']],
-			'columns' => ['title', 'slug', 'views', 'id', 'date_created']
-		]);
+		$data['questions'] = $questionsData['data'];
+		$data['pagination'] = $questionsData['pagination'];
 		$data['subcategories'] = $this->categories->find([
 			'where' => [
 				'parent_id',

@@ -9,6 +9,7 @@
 	</a>
 	<?php endforeach; ?>
 </div>
+<?php if (isset($pagination)) { echo $pagination; } ?>
 <?php else: ?>
 <div class="alert alert-info">
 	No questions matching this criteria

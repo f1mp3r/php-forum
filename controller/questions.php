@@ -134,7 +134,7 @@ class Questions_Controller extends Base_Controller
 						$this->renderView('front/error', ['message' => 'Error: ' . $this->questions->geterror(), 'title' => 'Error', 'errors' => $errors]);
 					} else {
 						$this->redirect('questions', 'view', [$question['id'], $question['slug']]);
-						$this->renderView('front/success', ['message' => 'The question was submitted.', 'title' => 'Question created']);
+						// $this->renderView('front/success', ['message' => 'The question was submitted.', 'title' => 'Question created']);
 					}
 				} else {
 					$this->renderView('front/error', ['message' => 'Could not insert the question: ' . $this->questions->geterror(), 'title' => 'Error']);
@@ -143,6 +143,7 @@ class Questions_Controller extends Base_Controller
 			return;
 		} else {
 			$data['title'] = 'New question';
+			$data['boardid'] = $boardid;
 
 			$boards = $this->categories->find();
 			$data['boards'] = $boards;
@@ -160,7 +161,26 @@ class Questions_Controller extends Base_Controller
 		}
 	}
 
-	public function bytag($slug) {
+
+	public function search($query, $page = 1) {
+		$query = urldecode($query);
+		$data = [];
+
+		$questionsData = $this->questions->paginate([
+			'where' => [
+				['title', 'LIKE', '%' . clean($query) . '%'],
+				'OR',
+				['text', 'LIKE', '%' . clean($query) . '%']
+			]
+		], 'questions/search/' . urlencode($query) . '/', $page);
+
+		$data['questions'] = $questionsData['data'];
+		$data['pagination'] = $questionsData['pagination'];
+		$data['title'] = 'Searching for "' . $query . '"';
+		$this->renderView('front/questions/search', $data);
+	}
+
+	public function bytag($slug, $page = 1) {
 		$tag = $this->tags->get($slug, 'slug');
 		if ($tag == null) {
 			$this->renderView('front/error', ['title' => 'No such tag', 'message' => 'Such tag does not exist']);
@@ -168,7 +188,7 @@ class Questions_Controller extends Base_Controller
 		}
 		$data = [];
 
-		$questions = $this->questions->find([
+		$questionsData = $this->questions->paginate([
 			'columns' => ['questions.*'],
 			'join' => [
 				[
@@ -184,9 +204,10 @@ class Questions_Controller extends Base_Controller
 				]
 			],
 			'where' => 'tags.slug = \'' . clean($slug) . "'"
-		]);
+		], 'questions/bytag/' . $slug . '/', $page);
 
-		$data['questions'] = $questions;
+		$data['questions'] = $questionsData['data'];
+		$data['pagination'] = $questionsData['pagination'];
 		$data['title'] = 'Questions having the tag "' . $tag['tag'] . '"';
 		$this->renderView('front/questions/search', $data);
 	}

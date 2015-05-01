@@ -37,8 +37,14 @@
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="navigation">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="home/">Home</a></li>
+						<li><a href="home/">Home</a></li>
 					</ul>
+					<form class="navbar-form navbar-left" action="javascript:search();" method="post" data-action="questions/search/" id="search-form" role="search">
+						<div class="form-group">
+							<input type="text" class="form-control" id="search-input" placeholder="Search" />
+						</div>
+						<button type="button" id="search-btn" class="btn btn-default">Submit</button>
+					</form>
 					<?php if(!$user->is_logged_in()): ?>
 					<ul class="nav navbar-nav pull-right">
 						<li><a href="user/signin">Login / Register</a></li>

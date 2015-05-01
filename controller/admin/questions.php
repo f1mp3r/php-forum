@@ -97,67 +97,107 @@ class Questions_Controller extends Admin_Controller
 				}
 			}
 
-			foreach (explode(',', $tags) as $tag) {
-				$tag = trim($tag);
-				if (empty($tag)) {
-					continue;
-				}
-				$slugified = $slugify->slugify($tag);
-				$check = $this->tags->get($slugified, 'slug');
-				$tag_id = 0;
-				if ($check != null) {
-					$tag_id = $check['id'];
-				} else {
-					if (count(is_valid($tag, '/^[A-Za-z0-9_\p{Cyrillic}\d\s]+$/u', 2, 50))) {
-						$errors[] = implode('<br />', is_valid($tag, '/^[A-Za-z0-9_\p{Cyrillic}\d\s]+$/u', 2, 50, 'The tag ' . clean($tag)));
-					} else {
-						if ($this->tags->create(['tag' => $tag,'slug' => $slugified]) == 1) {
-							$tag_id = $this->tags->get($slugified, 'slug')['id'];
+			//get current tags
+			$currentTags = $this->tags->find([
+				'columns' => ['id', 'tag', 'slug'],
+				'join' => [
+					'table' => 'questions_tags',
+					'key_from' => 'id',
+					'key_to' => 'tag_id'
+				],
+				'where' => ['question_id', $id]
+			]);
+			$tagsAsNames = [];
+			foreach ($currentTags as $tag) {
+				$tagsAsNames[] = $tag['tag'];
+			}
+			$tagsAsString = implode(', ', $tagsAsNames);
+
+			if ($tags != $tagsAsString) {
+				foreach (explode(',', $tags) as $tag) {
+					$tag = trim($tag);
+					if (empty($tag)) {
+						continue;
+					}
+					if (in_array($tag, $tagsAsNames)) {
+						continue;
+					}
+
+					$slugified = $slugify->slugify($tag);
+					$check = $this->tags->get($slugified, 'slug');
+
+					if ($check != null) {
+						$tag_id = $check['id'];
+						if (count($this->questions_tags->find(['where' => [['tag_id', $tag_id], 'and', ['question_id', $id]]])) == 1) {
+							// tag is already connected with the question
+							continue;
 						} else {
-							$errors[] = 'An error occured while trying to insert the tag ' . $tag;
+							$connect_tag = $this->questions_tags->create(['tag_id' => $tag_id, 'question_id' => $id]);
+							if ($connect_tag != 1) {
+								$errors[] = 'Could not associate tag with question';
+							} else {
+							}
+						}
+					} else {
+						if (count(is_valid($tag, '/^[A-Za-z0-9_\p{Cyrillic}\d\s]+$/u', 2, 50))) {
+							$errors[] = implode('<br />', is_valid($tag, '/^[A-Za-z0-9_\p{Cyrillic}\d\s]+$/u', 2, 50, 'The tag ' . clean($tag)));
+						} else {
+							if ($this->tags->create(['tag' => $tag,'slug' => $slugified]) == 1) {
+								$tag_id = $this->tags->get($slugified, 'slug')['id'];
+								$connect_tag = $this->questions_tags->create(['tag_id' => $tag_id, 'question_id' => $id]);
+								if ($connect_tag != 1) {
+									$errors[] = 'Could not associate tag with question';
+								} else {
+								}
+							} else {
+								$errors[] = 'An error occured while trying to insert the tag ' . $tag;
+							}
 						}
 					}
-				}
-				if ($tag_id !== 0) {
-					$tag_ids[] = $tag_id;
 				}
 			}
 
 			if (count($errors)) {
 				$this->renderView('front/error', ['message' => 'The following errors occured:', 'title' => 'Error', 'errors' => $errors]);
 			} else {
-				$insertion = $this->questions->update($id, [
-					'title' => $title,
-					'slug' => $slug,
-					'category_id' => $category_id,
-					'text' => $text,
-					'user_id' => $this->user()->get_logged_user()['user_id']
-				]);
-				unset($_POST['post']);
-				unset($_POST['title']);
-				unset($_POST['text']);
-				unset($_POST['tags']);
+				if ($question['title'] != $title && $question['slug'] != $slug && $question['category_id'] != $category_id && $question['text'] != $text) {
+					$update = $this->questions->update($id, [
+						'title' => $title,
+						'slug' => $slug,
+						'category_id' => $category_id,
+						'text' => $text
+					]);
+				} else {
+					$update = 1;
+				}
 
-				if ($insertion == 1) {
-					$question = $this->questions->find(['orderby' => ['date_created' => 'DESC', 'id' => 'DESC'], 'limit' => 1])[0];
-
-					foreach ($tag_ids as $tagid) {
-						$insertedTag = $this->questions_tags->create(['tag_id' => $tagid, 'question_id' => $question['id']]);
-						if ($insertedTag != 1) {
-							$errors[] = 'Could not associate tag with question';
+				if ($update == 1) {
+					$newTags = array_map('trim', array_filter(explode(',', $tags)));
+					$diff_tags = array_diff($tagsAsNames, $newTags);
+					// echo '<pre>';
+					// print_r($tagsAsNames);
+					// print_r($newTags);
+					// print_r($diff_tags);
+					// echo '</pre>';
+					foreach ($diff_tags as $tag) {
+						$slugged = $slugify->slugify($tag);
+						$get_tag = $this->tags->get($tag, 'tag');
+						$deletion = $this->questions_tags->delete(0, "`tag_id` = '" . $get_tag['id'] . "' AND `question_id` = '" . $id . "'");
+						if ($deletion != 1) {
+							$errors[] = 'Could\'t delete the tag (' . $tag . '): ' . $this->questions_tags->geterror();
 						}
 					}
 					if (count($errors)) {
-						$this->renderView('front/error', ['message' => 'Error: ' . $this->questions->geterror(), 'title' => 'Error', 'errors' => $errors]);
+						$this->renderView('front/error', ['message' => 'Error', 'title' => 'Error', 'errors' => $errors]);
 					} else {
-						$this->redirect('questions', 'view', [$question['id'], $question['slug']]);
-						$this->renderView('front/success', ['message' => 'The question was submitted.', 'title' => 'Question created']);
+						// $this->redirect('admin/questions', 'view', [$id]);
+						$this->renderView('front/success', ['message' => 'Question successfully updated', 'title' => 'Good job']);
 					}
 				} else {
-					$this->renderView('front/error', ['message' => 'Could not insert the question: ' . $this->questions->geterror(), 'title' => 'Error']);
+					$this->renderView('front/error', ['message' => 'Error:' . $this->questions->geterror(), 'title' => 'Error', 'errors' => $errors]);
 				}
-			}
-			return;
+				return;
+			} 
 		} else {
 			$this->redirect('admin/questions', 'view', [$id]);
 		}

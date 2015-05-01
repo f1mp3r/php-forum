@@ -14,7 +14,7 @@
 			<select name="category_id" id="board">
 				<option value="0">Choose a board</option>
 				<?php foreach ($boards as $board): ?>
-				<option value="<?php echo$board['id']; ?>"><?php echo$board['name']; ?></option>
+				<option value="<?php echo$board['id']; ?>"<?php echo $boardid == $board['id'] ? ' selected="selected"' : null; ?>><?php echo$board['name']; ?></option>
 				<?php endforeach; ?>
 			</select>
 		</div>
