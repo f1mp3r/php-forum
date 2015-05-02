@@ -268,8 +268,8 @@ class Master_Model
 				$current_page = 1;
 			}
 
-			$output['pagination'] .= '<nav><ul class="pagination">';
 			// make pages
+			$output['pagination'] .= '<nav><ul class="pagination">';
 			$output['pagination'] .= '<li' . (($current_page == 1) ? ' class="disabled"' : null) . '><a href="' . $url . '1">First</a></li>';
 			$output['pagination'] .= '<li' . (($current_page == 1) ? ' class="disabled"' : null) . '><a href="' . $url . max([$current_page - 1, 1]) . '" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>';
 			foreach(range(1, $total_pages) as $page){

@@ -12,6 +12,14 @@
 				<li>Views: <?php echo $question['views'] + 1; ?></li>
 				<li>Answers: <?php echo count($answers); ?></li>
 				<li><a href="boards/view/<?php echo $category['slug']; ?>"><?php echo $category['name']; ?></a></li>
+				<?php if ($user->is_logged_in() && $user->get_logged_user()['user_id'] == $question['user_id']): ?>
+				<li>
+					<div class="btn-group btn-group-justified">
+						<a href="questions/edit/<?php echo $question['id']; ?>" class="btn btn-primary btn-xs">Edit</a>
+						<a href="questions/delete/<?php echo $question['id']; ?>" class="btn btn-danger btn-xs">Delete</a>
+					</div>
+				</li>
+				<?php endif; ?>
 			</ul>
 			<a href="questions/answer/<?php echo $question['id']; ?>" class="btn btn-success btn-block">Answer</a>
 		</div>

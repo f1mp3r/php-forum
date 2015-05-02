@@ -1,8 +1,8 @@
 <h3 class="text-center">Question :: <i><?php echo $question['title']; ?></i></h3>
 <a href="questions/delete/<?php echo $question['id']; ?>" class="btn btn-danger delete-confirm">Delete question</a>
 <hr />
-<p>Added by: <?php echo $user['username']; ?> on <?php echo date('d.m.Y H:i', strtotime($question['date_created'])); ?></p>
-<form method="post" action="questions/edit/<?php echo $question['id']; ?>" id="prefix">
+<?php if ($author != null) { ?><p id="prefix">Added by: <?php echo $author['username']; ?> on <?php echo date('d.m.Y H:i', strtotime($question['date_created'])); ?></p><?php } ?>
+<form method="post" action="questions/edit/<?php echo $question['id']; ?>">
 	<input type="hidden" name="csrf_token" value="<?php echo $token; ?>">
 	<p>Title: <input type="text" name="title" value="<?php echo htmlspecialchars_decode(stripslashes($question['title'])); ?>" /></p>
 	<p>Category:

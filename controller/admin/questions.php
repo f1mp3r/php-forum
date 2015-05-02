@@ -32,7 +32,7 @@ class Questions_Controller extends Admin_Controller
 
 		$data['title'] = 'Question: ' . $question['title'];
 		$data['question'] = $question;
-		$data['user'] = $this->users->get($question['user_id']);
+		$data['author'] = $this->users->get($question['user_id']);
 		$data['answers'] = $this->answers->find(['where' => ['question_id', $question['id']]]);
 		$data['categories'] = $this->categories->find();
 		$tags = $this->tags->find([
