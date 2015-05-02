@@ -1,4 +1,4 @@
-<h1 class="text-center"><?php echo $question['title']; ?></h1>
+<h1 class="text-center"><?php echo htmlspecialchars_decode(stripslashes($question['title'])); ?></h1>
 <div class="question">
 	<div class="row">
 		<div class="col-md-3">
@@ -17,7 +17,7 @@
 		</div>
 		<div class="col-md-9">
 			<div class="text">
-				<?php echo nl2br(htmlspecialchars(stripslashes($question['text']))); ?>
+				<?php echo nl2br(htmlspecialchars_decode(stripslashes($question['text']))); ?>
 			</div>
 		</div>
 	</div>
@@ -43,7 +43,7 @@
 			| <span title="<?php echo date('d.m.Y H:i', strtotime($answer['date_created'])); ?>">Added <?php echo time_ago(strtotime($answer['date_created'])); ?> ago
 					</span><br />
 			<div class="text">
-				<?php echo nl2br(htmlspecialchars(stripslashes($answer['text']))); ?>
+				<?php echo nl2br(htmlspecialchars_decode(stripslashes($answer['text']))); ?>
 			</div>
 		</div>
 	<?php endforeach; ?>

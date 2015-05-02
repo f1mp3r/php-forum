@@ -4,7 +4,7 @@
 <p>Added by: <?php echo $user['username']; ?> on <?php echo date('d.m.Y H:i', strtotime($question['date_created'])); ?></p>
 <form method="post" action="questions/edit/<?php echo $question['id']; ?>" id="prefix">
 	<input type="hidden" name="csrf_token" value="<?php echo $token; ?>">
-	<p>Title: <input type="text" name="title" value="<?php echo $question['title']; ?>" /></p>
+	<p>Title: <input type="text" name="title" value="<?php echo htmlspecialchars_decode(stripslashes($question['title'])); ?>" /></p>
 	<p>Category:
 		<select name="category_id" id="board">
 			<?php
@@ -17,7 +17,7 @@
 	<p>Tags: <div id="tags"></div><input type="hidden" name="tags" value="<?php echo $tags; ?>" /></p>
 	<p>
 		Text: <br />
-		<textarea name="text" style="height: 300px" class="form-control"><?php echo $question['text']; ?></textarea>
+		<textarea name="text" style="height: 300px" class="form-control"><?php echo htmlspecialchars_decode(stripslashes($question['text'])); ?></textarea>
 	</p>
 	<hr />
 	<button class="btn btn-primary center-block" type="submit" name="edit">Edit question</button>

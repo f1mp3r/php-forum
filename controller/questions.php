@@ -170,6 +170,16 @@ class Questions_Controller extends Base_Controller
 		}
 	}
 
+	public function all($page = 1) {
+		$data = [];
+
+		$questionsData = $this->questions->paginate(['orderby' => ['date_created' => 'DESC', 'id' => 'DESC']], 'questions/all/', $page);
+
+		$data['questions'] = $questionsData['data'];
+		$data['pagination'] = $questionsData['pagination'];
+		$data['title'] = 'All questions';
+		$this->renderView('front/questions/list', $data);
+	}
 
 	public function search($query, $page = 1) {
 		$query = urldecode($query);
@@ -180,13 +190,14 @@ class Questions_Controller extends Base_Controller
 				['title', 'LIKE', '%' . clean($query) . '%'],
 				'OR',
 				['text', 'LIKE', '%' . clean($query) . '%']
-			]
+			],
+			'orderby' => ['date_created' => 'DESC', 'id' => 'DESC']
 		], 'questions/search/' . urlencode($query) . '/', $page);
 
 		$data['questions'] = $questionsData['data'];
 		$data['pagination'] = $questionsData['pagination'];
 		$data['title'] = 'Searching for "' . $query . '"';
-		$this->renderView('front/questions/search', $data);
+		$this->renderView('front/questions/list', $data);
 	}
 
 	public function bytag($slug, $page = 1) {
@@ -212,13 +223,14 @@ class Questions_Controller extends Base_Controller
 					'table_from' => 'questions_tags'
 				]
 			],
-			'where' => 'tags.slug = \'' . clean($slug) . "'"
+			'where' => 'tags.slug = \'' . clean($slug) . "'",
+			'orderby' => ['date_created' => 'DESC', 'id' => 'DESC']
 		], 'questions/bytag/' . $slug . '/', $page);
 
 		$data['questions'] = $questionsData['data'];
 		$data['pagination'] = $questionsData['pagination'];
 		$data['title'] = 'Questions having the tag "' . $tag['tag'] . '"';
-		$this->renderView('front/questions/search', $data);
+		$this->renderView('front/questions/list', $data);
 	}
 
 	public function answer($question_id) {

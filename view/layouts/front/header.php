@@ -38,6 +38,7 @@
 				<div class="collapse navbar-collapse" id="navigation">
 					<ul class="nav navbar-nav">
 						<li><a href="home/"><i class="glyphicon glyphicon-home"></i> Home</a></li>
+						<li><a href="questions/all"><i class="glyphicon glyphicon-align-justify"></i> All questions</a></li>
 					</ul>
 					<form class="navbar-form navbar-left navbar-input-group" action="javascript:search();" method="post" data-action="questions/search/" id="search-form" role="search">
 						<div class="form-group">

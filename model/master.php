@@ -264,7 +264,7 @@ class Master_Model
 			return $output;
 		} else {
 			$total_pages = ceil($data_count / $row_per_page);
-			if ($current_page < 1) {
+			if ($current_page < 1 || $current_page > $total_pages) {
 				$current_page = 1;
 			}
 
